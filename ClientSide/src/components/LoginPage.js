@@ -1,6 +1,11 @@
 import useBasicInput from "../hooks/usebasic-input";
-
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Axios from "axios";
 const BasicForm = (props) => {
+  let navigate = useNavigate();
+  const [oneSubmit, setOneSubmit] = useState(false);
+
   const {
     value: enteredEmail,
     valueChangeHandler: emailChangeHandler,
@@ -24,9 +29,22 @@ const BasicForm = (props) => {
     if (!formIsValid) {
       return;
     }
-    console.log(enteredEmail, enteredPassword);
-    passwordReset();
-    emailReset();
+
+    Axios.get("http://localhost:3001/readUser").then((response) => {
+      for (let i = 0; i < response.data.length; i++) {
+        if (response.data[i].email === enteredEmail) {
+          if (response.data[i].password === enteredPassword) {
+            props.setIsLoggedIn(true);
+            navigate(":" + enteredEmail + "/createquiz");
+          } else {
+            break;
+          }
+        }
+      }
+      passwordReset();
+      emailReset();
+      setOneSubmit(true);
+    });
   };
 
   const passwordInputClasses =
@@ -36,6 +54,9 @@ const BasicForm = (props) => {
 
   return (
     <form onSubmit={submissionHandler}>
+      {oneSubmit && (
+        <p className={`error-text`}>Email or Password entered is wrong.</p>
+      )}
       <div className={`form-control ${emailInputClasses}`}>
         <label htmlFor="name">E-Mail Address</label>
         <input
@@ -65,6 +86,7 @@ const BasicForm = (props) => {
       <div className="form-actions">
         <button disabled={!formIsValid}>Submit</button>
       </div>
+      <Link to="/register">New here? Register</Link>
     </form>
   );
 };

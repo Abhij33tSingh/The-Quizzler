@@ -40,5 +40,5 @@ app.get("/readUser", async (req, res) => {
 });
 
 app.listen(3001, () => {
-  console.log("Server runnung on port 3001");
+  console.log("Server running on port 3001");
 });
