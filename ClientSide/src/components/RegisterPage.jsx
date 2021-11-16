@@ -60,50 +60,58 @@ const BasicForm = (props) => {
   const formIsValid = passwordIsValid && emailIsValid && nameIsValid;
 
   return (
-    <form onSubmit={submissionHandler}>
-      <div className={`form-control ${nameInputClasses}`}>
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          id="name"
-          onChange={nameChangeHandler}
-          onBlur={nameBlurHandler}
-          value={enteredName}
-        />
-        {!nameIsValid && nameInputTouched && (
-          <p className={`error-text`}>Name should not be empty.</p>
-        )}
+    <div>
+      <header>
+        <h1>Quizzler</h1>
+      </header>
+      <div className="signUpContainer">
+        <h2>Sign Up</h2>
+        <form onSubmit={submissionHandler}>
+          <div className={`form-control ${nameInputClasses}`}>
+            <input
+              type="text"
+              id="name"
+              onChange={nameChangeHandler}
+              onBlur={nameBlurHandler}
+              value={enteredName}
+              placeholder="Enter your name"
+            />
+            {!nameIsValid && nameInputTouched && (
+              <p className={`error-text`}>Name should not be empty.</p>
+            )}
+          </div>
+          <div className={`form-control ${emailInputClasses}`}>
+            <input
+              type="text"
+              id="name"
+              onChange={emailChangeHandler}
+              onBlur={emailBlurHandler}
+              value={enteredEmail}
+              placeholder="Enter your email"
+            />
+            {!emailIsValid && emailInputTouched && (
+              <p className={`error-text`}>Enter a valid Email address.</p>
+            )}
+          </div>
+          <div className={`form-control ${passwordInputClasses}`}>
+            <input
+              type="text"
+              id="password"
+              onChange={passwordChangeHandler}
+              onBlur={passwordBlurHandler}
+              value={enteredPassword}
+              placeholder="Create your password"
+            />
+            {!passwordIsValid && passwordInputTouched && (
+              <p className={`error-text`}>Password should not be empty.</p>
+            )}
+          </div>
+          <div className="form-actions">
+            <button disabled={!formIsValid}>Submit</button>
+          </div>
+        </form>
       </div>
-      <div className={`form-control ${emailInputClasses}`}>
-        <label htmlFor="name">E-Mail Address</label>
-        <input
-          type="text"
-          id="name"
-          onChange={emailChangeHandler}
-          onBlur={emailBlurHandler}
-          value={enteredEmail}
-        />
-        {!emailIsValid && emailInputTouched && (
-          <p className={`error-text`}>Enter a valid Email address.</p>
-        )}
-      </div>
-      <div className={`form-control ${passwordInputClasses}`}>
-        <label htmlFor="password">Create Password</label>
-        <input
-          type="text"
-          id="password"
-          onChange={passwordChangeHandler}
-          onBlur={passwordBlurHandler}
-          value={enteredPassword}
-        />
-        {!passwordIsValid && passwordInputTouched && (
-          <p className={`error-text`}>Password should not be empty.</p>
-        )}
-      </div>
-      <div className="form-actions">
-        <button disabled={!formIsValid}>Submit</button>
-      </div>
-    </form>
+    </div>
   );
 };
 
