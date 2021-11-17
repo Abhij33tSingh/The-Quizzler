@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const userModel = require("./models/users");
+const quizModel = require("./models/quiz");
 const cors = require("cors");
 
 app.use(express.json());
@@ -39,6 +40,51 @@ app.get("/readUser", async (req, res) => {
   });
 });
 
+app.post("/postQuiz", async (req, res) => {
+  const { title, description, t, allQuestions } = req.body;
+
+  const quiz = new quizModel({
+    title: title,
+    description: description,
+    t: t,
+    allQuestions: allQuestions,
+  });
+
+  try {
+    await quiz.save();
+    res.send("Inserted Successfully");
+  } catch (err) {
+    res.send(err);
+  }
+});
+
+app.get("/getQuiz/:id", async (req, res) => {
+  const { id } = req.params;
+  const reqQuiz = await quizModel.findById(id);
+  res.send(reqQuiz);
+});
+
+app.get("/getAllQuizzes", async (req, res) => {
+  quizModel.find({}, (err, result) => {
+    if (err) {
+      res.send(err);
+    }
+
+    res.send(result);
+  });
+});
+
+app.get("/getUser/:id", async (req, res) => {
+  const { id } = req.params;
+  await userModel.findById(id).then((err, result) => {
+    if (err) {
+      res.send(err);
+
+      res.send(result);
+    }
+  });
+});
+
 app.listen(3001, () => {
-  console.log("Server runnung on port 3001");
+  console.log("Server running on port 3001");
 });
