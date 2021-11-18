@@ -1,20 +1,30 @@
 import React from "react";
-
+var year = new Date();
+year = year.getFullYear();
 function HomePage() {
   return (
-    <header>
-      <h1>Quizzler</h1>
-      <ul className="navbarItems">
-        <li>Create a Quiz</li>
-        <li>About us</li>
-        <li>Take a Quiz</li>
-        <li>User Account when logged in</li>
-      </ul>
+    <div className="homePage">
+      <header>
+        <h1>Quizzler</h1>
 
-      <div className="Signup">
-        <button>Sign Up</button>
+        <ul className="navbarItems">
+          <li>Create a Quiz</li>
+          <li>About us</li>
+          <li>Start Quiz</li>
+        </ul>
+        <div>
+          <button>Sign Up</button>
+        </div>
+      </header>
+      <div className="HomeBody">
+        <div className="LoginButtonContainer">
+          <button>Login</button>
+        </div>
       </div>
-    </header>
+      <footer>
+        <p> Copyright© {year} </p>{" "}
+      </footer>
+    </div>
   );
 }
 

@@ -2,10 +2,7 @@
 
 
 
-body {
-  background: url("./Images/abstract_geometric_banner_design_2507.jpg") no-repeat center fixed;
-  background-size: cover;
-}
+
 
 * {
   padding: 0;
@@ -41,21 +38,20 @@ header {
 
 .navbarItems {
     display: flex;
-    align-items: center; 
+    align-items:center; 
     justify-content: center;
-    width: 60%;
+    width: 50%;
     
 }
 li {
     
-    flex: 0 10 auto; 
+     
     list-style-type: none;
+    display: inline-block;
     color: #fff;
     margin: 20px auto;
-    font-size: 16px;
-    
-    
-}
+    font-size: 20px;
+  }
 
 
 
@@ -63,20 +59,51 @@ li {
 header h1 {
   color: #fff;
   font-family: "McLaren", cursive;
-  
-  
   font-size: 50px;
   font-weight: 700;
-  text-align: left
-}
-
-
-
-
-.Signup {
-    font-size: 20px;
+  text-align: left;
   
 }
+
+
+.HomeBody{
+  background-image: url(./Images/abstract_geometric_banner_design_2507.jpg);
+    
+  background-size: cover;
+  padding: 10%;
+}
+
+
+
+button{
+  font-size: 20px;
+}
+
+.LoginButtonContainer{
+  width:30%;
+  height : 300px;
+  background-color: rgba(130, 241, 198,.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10%;
+}
+
+  
+footer{
+  background-color: black;
+  text-align: center;
+  
+  width: 100%;
+  height: 2.5em;
+}
+
+footer p{
+  color: white;
+}
+
+
+
 
 
 
@@ -92,7 +119,7 @@ header h1 {
 
 .loginContainer{
     height: 20em;
-    background-color: #b0c1c9;
+    background-color: rgba(147, 181, 198,0.4);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);;
     text-align: center;
     border-radius: 5%;
@@ -103,6 +130,14 @@ header h1 {
     
 }
 
+.loginPage{
+  background-image: url(./Images/abstract_geometric_banner_design_2507.jpg);
+  background-size: cover;
+  position: fixed;   
+  min-width: 100%;   min-height: 100%;
+  
+ 
+}
 .loginText{
   margin-top: 15px;
   font-size: 30px;
@@ -147,6 +182,90 @@ button{
   width: 20em;
   padding: 10px;
 }
+
+
+
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/* Profile Page Style */
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */ 
+
+.profilePage {
+  background-image: url(./Images/5570863.jpg);
+  background-size: cover;
+  
+
+}
+
+.IntroSection {
+  margin: 20px 20px;
+  display:flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.UserImage{
+  width: 150px; 
+  height: 150px;
+  margin: 20px 30px;
+}
+
+.Greetings{
+  
+  text-align:center;
+  margin: 20px 0;
+  
+}
+
+.NumOfQuizCreated{
+  font-weight:bold;
+  font-size:30px;
+}
+
+.NumOfQuizAttempted{
+  font-weight:bold;
+  font-size:30px;
+
+}
+
+.ResultsContainer{
+  padding: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.HostResult{
+  width: 35%;
+  margin-right: 10%;
+  background-color: rgba(240, 233, 210,0.5);
+  border-radius: 5%;
+  text-align: center;
+  padding: 2%;
+}
+
+.HostResult h1{
+  margin-bottom: 20px;
+}
+
+.QuizAttemptedResult{
+  width: 35%;
+  margin-right: 10%;
+  background-color: rgba(240, 233, 210,0.5);
+  border-radius: 5%;
+  text-align: center;
+  
+  padding: 2%;
+}
+
+.QuizAttemptedResult h1{
+  margin-bottom: 20px;
+}
+
 
 
 
