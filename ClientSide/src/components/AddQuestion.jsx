@@ -148,11 +148,11 @@ const AddQuestion = (props)=>{
                     onChange = {AnswerChangeHandler}/>
                 </div>
                 <div>
-                    <button type = "submit" onClick={addAquestion}>Add</button>
+                    <button type = "submit" onClick={addAquestion}>+</button>
             </div>
             </form>
             </div>)}
-             { state === 'done'&&(<div>
+             {state === 'done'&&(<div>
               <QuestionCard/>
               </div>)}
             </div>

@@ -2,20 +2,22 @@ import React from "react";
 import { useEffect, useState, Fragment } from "react";
 import Axios from "axios";
 import { useParams, Link } from "react-router-dom";
+import SelectQuiz from "./SelectQuiz";
 
 function HomePage(props) {
   const isLoggedIn = props.loggedIn;
-
+  //const id = props.id;
   const [name, setName] = useState("");
+  const [id,setId] = useState("");
   const [allQuizzes, setAllQuizzes] = useState({});
 
   const params = useParams();
 
   useEffect(() => {
     Axios.get("http://localhost:3001/getUser/" + params.id).then((response) => {
-      setName(response.data.name);
+      setName(response.data.name);}
       //WE ARE GETTING ALL OF OUR USER DATA IN response.data
-    });
+    );
 
     Axios.get("http://localhost:3001/getAllQuizzes").then((response) => {
       setAllQuizzes(response.data);
@@ -23,10 +25,10 @@ function HomePage(props) {
       //WE ARE GETTING ALL OF OUR QUIZZES IN response
     });
   }, []);
-
-  if (isLoggedIn) {
+  const q = Object.values(allQuizzes)
+  if (true) {
     return (
-      <Fragment>
+      <div>
         <header>
           <h1>Quizzler</h1>
           <ul className="navbarItems">
@@ -41,10 +43,20 @@ function HomePage(props) {
 
           <div className="Signup">
             <button>Sign Up</button>
+            
           </div>
         </header>
-        <div>{console.log(allQuizzes)}</div>
-      </Fragment>
+        <div>{console.log(q)}</div>
+        <div>
+        {
+           q.map((q,key)=>{
+             return(<div>
+               <SelectQuiz q={q} isLoggedIn={isLoggedIn} id={params.id}/>
+             </div>)
+           })
+         }
+        </div>
+      </div>
     );
   }
   // navigate("/login");   NAVIGATE IS NOT WORKING!??
