@@ -7,6 +7,8 @@ import CreateQuizPage from "./components/CreateQuizPage";
 import HomePage from "./components/HomePage";
 import QuizCreated from "./components/QuizCreated";
 import Profile from "./components/Profile";
+import AttemptQuiz from "./components/AttemptQuiz";
+//import AttemptQuiz from "./components/AttemptQuiz";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -22,11 +24,20 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/createquiz" element={<CreateQuizPage />} />
         <Route path="/quizCreated/:id" element={<QuizCreated />} />
-
+        
         <Route
           exact
           path="/homepage"
           element={<Navigate replace to="/login" />}
+        />
+         <Route
+          exact
+          path="/attempt"
+          element={<Navigate replace to="/login" />}
+        />
+        <Route
+          path="/attempt/:id/:id2"
+          element={<AttemptQuiz loggedIn={loggedIn} />}
         />
         <Route
           path="/homepage/:id"
