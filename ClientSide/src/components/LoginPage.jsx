@@ -1,7 +1,11 @@
 import useBasicInput from "../hooks/usebasic-input";
 import classnames from "classnames";
+import { Link, useNavigate } from "react-router-dom";
+import Axios from "axios";
 
 const BasicForm = (props) => {
+  const navigate = useNavigate();
+
   const {
     value: enteredEmail,
     valueChangeHandler: emailChangeHandler,
@@ -25,7 +29,19 @@ const BasicForm = (props) => {
     if (!formIsValid) {
       return;
     }
-    console.log(enteredEmail, enteredPassword);
+
+    Axios.get("http://localhost:3001/readUser").then((response) => {
+      for (let i = 0; i < response.data.length; i++) {
+        if (
+          response.data[i].email === enteredEmail &&
+          response.data[i].password === enteredPassword
+        ) {
+          props.setLoggedIn(true);
+          navigate("/homepage/" + response.data[i]._id);
+        }
+      }
+    });
+
     passwordReset();
     emailReset();
   };
@@ -83,6 +99,7 @@ const BasicForm = (props) => {
           <div className="form-actions">
             <button disabled={!formIsValid}>Login</button>
           </div>
+          <Link to="/register">New here? Register.</Link>
         </form>
       </div>
     </div>

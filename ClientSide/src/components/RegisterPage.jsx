@@ -1,6 +1,7 @@
 import useBasicInput from "../hooks/usebasic-input";
 import { useEffect } from "react";
 import Axios from "axios";
+import { Link } from "react-router-dom";
 
 const BasicForm = (props) => {
   useEffect(() => {
@@ -109,6 +110,7 @@ const BasicForm = (props) => {
           <div className="form-actions">
             <button disabled={!formIsValid}>Submit</button>
           </div>
+          <Link to="/login">Already have an account? Login.</Link>
         </form>
       </div>
     </div>
