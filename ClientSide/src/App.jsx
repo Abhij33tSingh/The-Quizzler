@@ -24,13 +24,13 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/createquiz" element={<CreateQuizPage />} />
         <Route path="/quizCreated/:id" element={<QuizCreated />} />
-        
+
         <Route
           exact
           path="/homepage"
           element={<Navigate replace to="/login" />}
         />
-         <Route
+        <Route
           exact
           path="/attempt"
           element={<Navigate replace to="/login" />}
@@ -43,6 +43,7 @@ function App() {
           path="/homepage/:id"
           element={<HomePage loggedIn={loggedIn} />}
         />
+        <Route path="/createquiz/:id" element={<CreateQuizPage />} />
 
         <Route path="/profile/:id" element={<Profile />} />
       </Routes>

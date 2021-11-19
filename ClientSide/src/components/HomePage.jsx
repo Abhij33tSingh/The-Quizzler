@@ -40,7 +40,13 @@ function HomePage(props) {
             Quizzler
           </h1>
           <ul className="navbarItems">
-            <li>Create a Quiz</li>
+            <li
+              onMouseDown={() => {
+                navigate("/createquiz/" + params.id);
+              }}
+            >
+              Create a Quiz
+            </li>
             <li>About us</li>
             <li>Take a Quiz</li>
             <li></li>

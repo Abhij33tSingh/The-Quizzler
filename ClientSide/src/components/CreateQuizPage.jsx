@@ -1,5 +1,5 @@
 import AddQuestion from "./AddQuestion";
-import { useState } from "react";
+import { useState, useParams, useEffect } from "react";
 import useBasicInput from "../hooks/usebasic-input";
 import React from "react";
 import Axios from "axios";
@@ -7,6 +7,13 @@ import { useNavigate } from "react-router-dom";
 
 const CreateQuizPage = () => {
   const navigate = useNavigate();
+
+  // // const [userData, setUserData] = useState({});
+  // useEffect(() => {
+  //   Axios.get("http://localhost:3001/getUser/" + params.id).then((response) => {
+  //     console.log(response);
+  //   });
+  // }, []);
 
   const [allQutions, addques] = useState([]);
   const n = 2;
@@ -56,7 +63,6 @@ const CreateQuizPage = () => {
       response.data.map((data) => {
         if (data.description === Description && data.title === data.title) {
           navigate("/quizCreated/" + data._id);
-          return;
         }
       });
     });
@@ -74,53 +80,73 @@ const CreateQuizPage = () => {
 
   return (
     <div>
-      <h2>Create Quiz</h2>
-      <form onSubmit={submissionHandler}>
-        <div className={`form-control ${titleInputClasses}`}>
-          <label>Quiz Title</label>
-          <input
-            type="text"
-            value={title}
-            onBlur={titleBlurHandler}
-            onChange={titleChangeHandler}
-          />
-        </div>
-        <div className={`form-control ${DescriptionInputClasses}`}>
-          <label>Quiz Description</label>
-          <input
-            type="text-area"
-            value={Description}
-            onBlur={DescriptionBlurHandler}
-            onChange={DescriptionChangeHandler}
-          />
-        </div>
-        <div className={`form-control`} onClick={Quiztype}>
-          <label>private</label>
-          <input type="radio" name="quiz-type" value="private" />
-          <label>public</label>
-          <input type="radio" name="quiz-type" value="public" checked />
-        </div>
-        <div className={`form-control`}>
-          <section>
-            {Array.from({ length: n }, (_, i) => (
-              <div>
-                <strong>Question {i + 1}</strong>
-                <br></br>
-                <br></br>
-                <AddQuestion data={data} />
-                <br></br>
-                <hr></hr>
-              </div>
-            ))}
-          </section>
-        </div>
-        <div>
-          <button className="form-actions" type="submit" value="Create Quiz">
-            {" "}
-            Create Quiz !
-          </button>
-        </div>
-      </form>
+      <header>
+        <h1>Quizzler</h1>
+
+        <ul className="navbarItems">
+          <li>Create a Quiz</li>
+          <li>About us</li>
+          <li>Start Quiz</li>
+          <li>Hello</li>
+        </ul>
+      </header>
+      <div className="CreateQuizPage">
+        <form onSubmit={submissionHandler}>
+          <div className="QuizInfoContainer">
+            <div className={`form-control ${titleInputClasses}`}>
+              <label className="quizTitle">Quiz Title</label>
+              <br />
+              <input
+                type="textarea"
+                value={title}
+                onBlur={titleBlurHandler}
+                onChange={titleChangeHandler}
+                className="quizTitleInput"
+              />
+              <br />
+            </div>
+            <div className={`form-control ${DescriptionInputClasses}`}>
+              <label className="quizDescription">Quiz Description</label>
+              <br />
+              <textarea
+                value={Description}
+                onBlur={DescriptionBlurHandler}
+                onChange={DescriptionChangeHandler}
+                className="quizDescriptionInput"
+                rows="30"
+                cols="70"
+              />
+              <br />
+            </div>
+            <div className={`form-control`} onClick={Quiztype}>
+              <label>private</label>
+              <input type="radio" name="quiz-type" value="private" />
+              <label>public</label>
+              <input type="radio" name="quiz-type" value="public" checked />
+            </div>
+          </div>
+          <div className={`form-control`}>
+            <section>
+              {Array.from({ length: n }, (_, i) => (
+                <div>
+                  <strong>Question {i + 1}</strong>
+                  <br></br>
+                  <br></br>
+                  <AddQuestion data={data} />
+                  <br></br>
+                  <hr></hr>
+                </div>
+              ))}
+            </section>
+          </div>
+          <div>
+            <button className="form-actions" type="submit" value="Create Quiz">
+              {" "}
+              Create Quiz !
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
