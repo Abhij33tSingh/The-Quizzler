@@ -3,11 +3,11 @@ import { useState } from "react";
 import useBasicInput from "../hooks/usebasic-input";
 import React from "react";
 import Axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 
 const CreateQuizPage = () => {
   const navigate = useNavigate();
-
+  const params = useParams();
   const [allQutions, addques] = useState([]);
   const n = 2;
   var x = 0;
@@ -74,10 +74,46 @@ const CreateQuizPage = () => {
 
   return (
     <div>
+      <header>
+    <h1 onMouseDown={()=> navigate("/homepage/")}>
+      Quizzler
+    </h1>
+    <ul className="navbarItems">
+      <li onClick={ ()=>{
+            return(
+            <div>
+              {navigate("/homepage/" + params.id)
+              //console.log(props.q.allQuestions)
+              }
+            </div>
+            )
+            }
+            }>Give Quiz</li>
+      <li>About us</li>
+      <li>
+        {<div className="Signup">
+          <button onClick={ ()=>{
+            return(
+            <div>
+              {navigate("/register")
+              //console.log(props.q.allQuestions)
+              }
+            </div>
+            )
+            }
+            }>
+            Sign Up
+          </button>
+
+        </div>}
+      </li>
+    </ul>
+  </header>
+  <div className="Container">
       <h2>Create Quiz</h2>
       <form onSubmit={submissionHandler}>
         <div className={`form-control ${titleInputClasses}`}>
-          <label>Quiz Title</label>
+          <label className = "label">Quiz Title</label>
           <input
             type="text"
             value={title}
@@ -86,8 +122,9 @@ const CreateQuizPage = () => {
           />
         </div>
         <div className={`form-control ${DescriptionInputClasses}`}>
-          <label>Quiz Description</label>
+          <label className = "label">Quiz Description</label>
           <input
+          className ="Input"
             type="text-area"
             value={Description}
             onBlur={DescriptionBlurHandler}
@@ -95,15 +132,16 @@ const CreateQuizPage = () => {
           />
         </div>
         <div className={`form-control`} onClick={Quiztype}>
-          <label>private</label>
+          <label className = "label">private</label>
           <input type="radio" name="quiz-type" value="private" />
-          <label>public</label>
+          <label className = "label">public</label>
           <input type="radio" name="quiz-type" value="public" checked />
         </div>
         <div className={`form-control`}>
           <section>
             {Array.from({ length: n }, (_, i) => (
               <div>
+                <hr></hr>
                 <strong>Question {i + 1}</strong>
                 <br></br>
                 <br></br>
@@ -121,6 +159,7 @@ const CreateQuizPage = () => {
           </button>
         </div>
       </form>
+    </div>
     </div>
   );
 };

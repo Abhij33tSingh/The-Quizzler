@@ -14,17 +14,17 @@ const SelectQuiz = (props) =>{
     return (
         <div>
             <tbody>
-                <td>
+                <td className = "test">
                     {
                         props.q.title
                     }
                 </td>
-                <td>
+                <td className = "test">
                     {
                         props.q.description
                     }
                 </td>
-                <td>
+                <td className = "test">
                     <button onClick = {attempt}>
                         Attempt Quiz
                     </button>

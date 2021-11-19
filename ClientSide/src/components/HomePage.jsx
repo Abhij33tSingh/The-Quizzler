@@ -8,69 +8,83 @@ var year = new Date();
 year = year.getFullYear();
 
 function HomePage(props) {
-  const isLoggedIn = props.loggedIn;
-  // const id = props.id;
-  const [name, setName] = useState("");
-  const [id, setId] = useState("");
-  const [allQuizzes, setAllQuizzes] = useState({});
-  const navigate = useNavigate();
-  const params = useParams();
+const isLoggedIn = props.loggedIn;
+// const id = props.id;
+const [name, setName] = useState("");
+const [id, setId] = useState("");
+const [allQuizzes, setAllQuizzes] = useState({});
+const navigate = useNavigate();
+const params = useParams();
 
-  useEffect(() => {
-    Axios.get("http://localhost:3001/getUser/" + params.id).then(
-      (response) => {
-        setName(response.data.name);
-        setId(response.data.id);
-      }
-      //WE ARE GETTING ALL OF OUR USER DATA IN response.data
-    );
+useEffect(() => {
+Axios.get("http://localhost:3001/getUser/" + params.id).then(
+(response) => {
+setName(response.data.name);
+setId(response.data.id);
+}
+//WE ARE GETTING ALL OF OUR USER DATA IN response.data
+);
 
-    Axios.get("http://localhost:3001/getAllQuizzes").then((response) => {
-      setAllQuizzes(response.data);
+Axios.get("http://localhost:3001/getAllQuizzes").then((response) => {
+setAllQuizzes(response.data);
 
-      //WE ARE GETTING ALL OF OUR QUIZZES IN response
-    });
-  }, []);
-  const q = Object.values(allQuizzes);
-  if (true) {
+//WE ARE GETTING ALL OF OUR QUIZZES IN response
+});
+}, []);
+const q = Object.values(allQuizzes);
+if (true) {
+return (
+<div>
+  <header>
+    <h1 onMouseDown={()=> navigate("/homepage/" + params.id)}>
+      Quizzler
+    </h1>
+    <ul className="navbarItems">
+      <li onClick={()=> navigate("/createquiz/"+params.id) }>Create a Quiz</li>
+      <li>About us</li>
+      <li>
+        { !isLoggedIn && <div className="Signup">
+          <button onClick={ ()=>{
+            return(
+            <div>
+              {navigate("/register")
+              //console.log(props.q.allQuestions)
+              }
+            </div>
+            )
+            }
+            }>
+            Sign Up
+          </button>
+
+        </div>}
+      </li>
+    </ul>
+    <nav className="UserName" onMouseDown={()=> {
+      navigate("/profile/" + params.id);
+      }}
+      >
+        
+      { isLoggedIn && <div>{name}</div>}
+    </nav>
+  </header>
+  <div>{console.log(q)}</div>
+  <div>
+    {q.map((q, key) => {
     return (
-      <div>
-        <header>
-          <h1 onMouseDown={() => navigate("/homepage/" + params.id)}>
-            Quizzler
-          </h1>
-          <ul className="navbarItems">
-            <li>Create a Quiz</li>
-            <li>About us</li>
-            <li>Take a Quiz</li>
-            <li></li>
-          </ul>
-          <nav
-            className="UserName"
-            onMouseDown={() => {
-              navigate("/profile/" + params.id);
-            }}
-          >
-            {name}
-          </nav>
-        </header>
-        <div>{console.log(q)}</div>
-        <div>
-          {q.map((q, key) => {
-            return (
-              <div>
-                <SelectQuiz q={q} isLoggedIn={isLoggedIn} id={params.id} />
-              </div>
-            );
-          })}
-        </div>
-        <footer>
-          <p> Copyright© {year} </p>{" "}
-        </footer>
-      </div>
+    <div>
+      <SelectQuiz q={q} isLoggedIn={isLoggedIn} id={params.id} />
+    </div>
     );
-  }
-  // navigate("/login");   NAVIGATE IS NOT WORKING!??
+    })}
+  </div>
+  <footer>
+    <p> Copyright© {year} </p>{" "}
+  </footer>
+</div>
+);
+}
+// navigate("/login"); NAVIGATE IS NOT WORKING!??
 }
 
 export default HomePage;

@@ -281,6 +281,22 @@ button{
 
 
 
+.Container{
+  background-color: rgba(147, 181, 198,0.4);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);;
+  text-align: center;
+  border-radius: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  width: 50%;
+}
+.label{
+  align-self: left;
+}
+.test{
+  width :600px
+}
 
 
 
