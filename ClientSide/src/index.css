@@ -40,7 +40,7 @@ header {
     display: flex;
     align-items:center; 
     justify-content: center;
-    width: 80%;
+    width: 60%;
     cursor: pointer;
 }
 li {
@@ -281,22 +281,89 @@ button{
 
 
 
-.Container{
-  background-color: rgba(147, 181, 198,0.4);
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/* CreateQuiz Page Style */
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */ 
+
+
+.quizTitle{
+  
+  font-weight : bold;
+  font-size :20px;
+   
+}
+
+.quizTitleInput{
+  height: 40px;  
+}
+
+.quizDescription{
+  
+  font-weight : bold;
+  font-size :20px;
+  
+}
+
+.quizDescriptionInput{
+  height: 80px;
+  margin-top: 20px;
+}
+
+textarea{
+  padding: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);;
-  text-align: center;
-  border-radius: 2%;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 20px;
-  width: 50%;
+  border: none;
+  border-radius: 5px 20px;
 }
-.label{
-  align-self: left;
+
+.CreateQuizPage{
+  background-image: url(./Images/abstract_geometric_banner_design_2507.jpg);
+  background-size: cover;
+  padding: 100px;
 }
-.test{
-  width :600px
+
+
+.QuizInfoContainer{
+  background-color:rgb(240, 240, 240,0.7);
+  padding: 50px;
+  border-radius: 50px 5px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);;
 }
+
+.RadioInput{
+  box-shadow: none;
+  margin: 20px;
+  width: 20px;
+}
+
+
+.QuizType{
+  display: flex;
+  flex-direction: column;
+}
+
+.QuestionCard{
+  background-color:rgb(240, 240, 240,0.7);
+  padding: 50px;
+  border-radius: 50px 5px;
+  margin: 50px 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);;
+}
+
+.Option {
+  margin-right: 20px;
+}
+
+.Answer{
+  margin-right: 26px;
+}
+
+
 
 
 
