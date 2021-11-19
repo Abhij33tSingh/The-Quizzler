@@ -3,6 +3,9 @@ import classnames from "classnames";
 import { Link, useNavigate } from "react-router-dom";
 import Axios from "axios";
 
+var year = new Date();
+year = year.getFullYear();
+
 const BasicForm = (props) => {
   const navigate = useNavigate();
 
@@ -56,52 +59,56 @@ const BasicForm = (props) => {
       <header>
         <h1>Quizzler</h1>
       </header>
-
-      <div className="loginContainer">
-        <h2 className="loginText">Login</h2>
-        <form onSubmit={submissionHandler}>
-          <div
-            className={classnames(
-              `form-control ${emailInputClasses}`,
-              "loginInput"
-            )}
-          >
-            <input
-              type="text"
-              id="name"
-              onChange={emailChangeHandler}
-              onBlur={emailBlurHandler}
-              value={enteredEmail}
-              placeholder="user name"
-            />
-            {!emailIsValid && emailInputTouched && (
-              <p className={`error-text`}>Enter a valid Email address.</p>
-            )}
-          </div>
-          <div
-            className={classnames(
-              `form-control ${passwordInputClasses}`,
-              "loginInput"
-            )}
-          >
-            <input
-              type="text"
-              id="password"
-              onChange={passwordChangeHandler}
-              onBlur={passwordBlurHandler}
-              value={enteredPassword}
-              placeholder="password"
-            />
-            {!passwordIsValid && passwordInputTouched && (
-              <p className={`error-text`}>Password should not be empty.</p>
-            )}
-          </div>
-          <div className="form-actions">
-            <button disabled={!formIsValid}>Login</button>
-          </div>
-          <Link to="/register">New here? Register.</Link>
-        </form>
+      <div className="loginPage">
+        <div className="loginContainer">
+          <h2 className="loginText">Login</h2>
+          <form onSubmit={submissionHandler}>
+            <div
+              className={classnames(
+                `form-control ${emailInputClasses}`,
+                "loginInput"
+              )}
+            >
+              <input
+                type="text"
+                id="name"
+                onChange={emailChangeHandler}
+                onBlur={emailBlurHandler}
+                value={enteredEmail}
+                placeholder="user name"
+              />
+              {!emailIsValid && emailInputTouched && (
+                <p className={`error-text`}>Enter a valid Email address.</p>
+              )}
+            </div>
+            <div
+              className={classnames(
+                `form-control ${passwordInputClasses}`,
+                "loginInput"
+              )}
+            >
+              <input
+                type="text"
+                id="password"
+                onChange={passwordChangeHandler}
+                onBlur={passwordBlurHandler}
+                value={enteredPassword}
+                placeholder="password"
+              />
+              {!passwordIsValid && passwordInputTouched && (
+                <p className={`error-text`}>Password should not be empty.</p>
+              )}
+            </div>
+            <div className="form-actions">
+              <button disabled={!formIsValid}>Login</button>
+            </div>
+            <Link to="/register">New here? Register.</Link>
+          </form>
+        </div>
       </div>
+      <footer>
+        <p> Copyright© {year} </p>{" "}
+      </footer>
     </div>
   );
 };
