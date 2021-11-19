@@ -88,7 +88,7 @@ const BasicForm = (props) => {
               )}
             >
               <input
-                type="text"
+                type="password"
                 id="password"
                 onChange={passwordChangeHandler}
                 onBlur={passwordBlurHandler}

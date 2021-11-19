@@ -97,7 +97,7 @@ const BasicForm = (props) => {
             </div>
             <div className={`form-control ${passwordInputClasses}`}>
               <input
-                type="text"
+                type="password"
                 id="password"
                 onChange={passwordChangeHandler}
                 onBlur={passwordBlurHandler}

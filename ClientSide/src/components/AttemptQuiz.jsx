@@ -1,11 +1,12 @@
 import React from "react";
 import { useEffect, useState, Fragment } from "react";
 import Axios from "axios";
-import { useParams, Link } from "react-router-dom";
+import { useNavigate,useParams, Link } from "react-router-dom";
 import QuestionBox from "./QuestionBox";
 
 function AttemptQuiz(props) {
   const isLoggedIn = props.loggedIn;
+  const navigate = useNavigate();
   const [score,setScore] = useState(0);
   const [response,setResponse] = useState(0);
   const [name, setName] = useState("");
@@ -45,6 +46,14 @@ function AttemptQuiz(props) {
   if (true) {
     return (
       <div>
+        <header>
+        <h1 onMouseDown={()=> navigate("/homepage/")}>
+      Quizzler
+    </h1>
+        </header>
+
+      
+      <div className = "Container">
         <h1>{allQues.title}</h1>
         <h4><div>{
             response < a.length &&
@@ -60,6 +69,7 @@ function AttemptQuiz(props) {
             {response === a.length ? (<h2>{ console.log(score)}{score}</h2>) : null }
             </div>
             </h4>
+      </div>
       </div>
     );
   }

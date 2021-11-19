@@ -19,6 +19,7 @@ function Profile() {
   return (
     <div className="profilePage">
       <header>
+        
         <h1>Quizzler</h1>
 
         <ul className="navbarItems">
