@@ -1,15 +1,18 @@
 import React from "react";
 import userIcons from "../Images/gamer.png";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Axios from "axios";
 import { useParams } from "react-router-dom";
 
+var year = new Date();
+year = year.getFullYear();
+
 function Profile() {
   const params = useParams();
-
+  const [userData, setUserData] = useState({});
   useEffect(() => {
     Axios.get("http://localhost:3001/getUser/" + params.id).then((response) => {
-      console.log(response);
+      setUserData(response.data);
     });
   }, []);
 
@@ -22,13 +25,13 @@ function Profile() {
           <li>Create a Quiz</li>
           <li>About us</li>
           <li>Start Quiz</li>
-          <li>User's Name</li>
+          <li>{userData.name}</li>
         </ul>
       </header>
       <div className="IntroSection">
         <img className="UserImage" src={userIcons} alt="user icon" />
         <div>
-          <h1 className="Greetings">Hello User's Name</h1>
+          <h1 className="Greetings">Hello {userData.name}</h1>
           <div className="UserDetails">
             <p>
               Quiz Attempted: <span className="NumOfQuizAttempted">0</span>
@@ -51,6 +54,9 @@ function Profile() {
           <button type="button">Click Here</button>
         </div>
       </div>
+      <footer>
+        <p> Copyright© {year} </p>{" "}
+      </footer>
     </div>
   );
 }
