@@ -4,6 +4,7 @@ import useBasicInput from "../hooks/usebasic-input";
 import React from "react";
 import Axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+//import QuestionCard from "./QuestionCard";
 
 var year = new Date();
 year = year.getFullYear();
@@ -80,7 +81,7 @@ const CreateQuizPage = () => {
     !DescriptionIsValid && DescriptionInputTouched ? "invalid" : "";
   const titleInputClasses = !titleIsValid && titleInputTouched ? "invalid" : "";
   const formIsValid =
-    DescriptionIsValid && titleIsValid && allQutions.length === n;
+    DescriptionIsValid && titleIsValid && allQutions.length > 1;
 
   return (
     <div>
@@ -158,16 +159,24 @@ const CreateQuizPage = () => {
             </div>
           </div>
           <div className={`form-control`}>
+            {
+              allQutions.length >= 1 &&
+              (<div className="QuizInfoContainer">
+                {
+                  allQutions.map((q,key)=><div>Question {key+1}) {q.Question}</div>)
+                }
+              </div>)
+            }
             <section>
-              {Array.from({ length: n }, (_, i) => (
+              {
                 <div className="QuestionCard">
-                  <strong>Question {i + 1}</strong>
+                  <strong>Question</strong>
                   <br></br>
                   <br></br>
 
                   <AddQuestion data={data} />
                 </div>
-              ))}
+              }
             </section>
           </div>
           <div>

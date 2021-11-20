@@ -1,10 +1,10 @@
-import { useState } from "react";
+//import { useState } from "react";
 import React from "react";
 import useBasicInput from "../hooks/usebasic-input";
-import QuestionCard from "./QuestionCard";
+//import QuestionCard from "./QuestionCard";
 
 const AddQuestion = (props) => {
-  const [state, setState] = useState("start");
+  //const [state, setState] = useState("start");
   const {
     value: Question,
     valueChangeHandler: QuestionChangeHandler,
@@ -81,7 +81,7 @@ const AddQuestion = (props) => {
       Answer: Answer,
     };
     props.data(item);
-    setState("done");
+    //setState("done");
     QuestionReset();
     AnswerReset();
     option1Reset();
@@ -112,7 +112,7 @@ const AddQuestion = (props) => {
     option4IsValid;
   return (
     <div>
-      {state === "start" && (
+      { (
         <div>
           <form>
             <div className={`form-control ${QuestionInputClasses}`}>
@@ -176,11 +176,6 @@ const AddQuestion = (props) => {
               </button>
             </div>
           </form>
-        </div>
-      )}
-      {state === "done" && (
-        <div>
-          <QuestionCard />
         </div>
       )}
     </div>
