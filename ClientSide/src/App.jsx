@@ -8,6 +8,7 @@ import HomePage from "./components/HomePage";
 import QuizCreated from "./components/QuizCreated";
 import Profile from "./components/Profile";
 import AttemptQuiz from "./components/AttemptQuiz";
+import PastResultsPage from "./components/PastResultsPage";
 //import AttemptQuiz from "./components/AttemptQuiz";
 
 function App() {
@@ -41,6 +42,8 @@ function App() {
           path="/attempt/:id/:id2" //id-UserId, id2-quizId
           element={<AttemptQuiz loggedIn={loggedIn} />}
         />
+
+        <Route path="/pastResults/:id" element={<PastResultsPage />} />
         <Route
           path="/homepage/:id" //id - userId
           element={<HomePage loggedIn={loggedIn} />}
