@@ -24,7 +24,8 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/createquiz/:id" element={<CreateQuizPage />} />
         {/* id - userid */}
-        {/* <Route path="/quizCreated/:id" element={<QuizCreated />} /> */}
+        <Route path="/quizCreated/:id" element={<QuizCreated />} />
+        {/* id - quizId */}
 
         <Route
           exact
