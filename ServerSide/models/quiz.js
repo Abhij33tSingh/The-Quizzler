@@ -4,6 +4,7 @@ const quizSchema = new mongoose.Schema({
   description: String,
   title: String,
   t: String,
+  userId: String,
   allQuestions: [
     {
       Answer: { type: String, required: true },

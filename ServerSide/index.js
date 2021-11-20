@@ -41,12 +41,13 @@ app.get("/readUser", async (req, res) => {
 });
 
 app.post("/postQuiz", async (req, res) => {
-  const { title, description, t, allQuestions } = req.body;
+  const { title, description, t, allQuestions, userId } = req.body;
 
   const quiz = new quizModel({
     title: title,
     description: description,
     t: t,
+    userId: userId,
     allQuestions: allQuestions,
   });
 
