@@ -23,24 +23,25 @@ function App() {
         />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/createquiz/:id" element={<CreateQuizPage />} />
-        <Route path="/quizCreated/:id" element={<QuizCreated />} />
-        
+        {/* id - userid */}
+        {/* <Route path="/quizCreated/:id" element={<QuizCreated />} /> */}
+
         <Route
           exact
           path="/homepage"
           element={<Navigate replace to="/login" />}
         />
-         <Route
+        <Route
           exact
           path="/attempt"
           element={<Navigate replace to="/login" />}
         />
         <Route
-          path="/attempt/:id/:id2"
+          path="/attempt/:id/:id2" //id-UserId, id2-quizId
           element={<AttemptQuiz loggedIn={loggedIn} />}
         />
         <Route
-          path="/homepage/:id"
+          path="/homepage/:id" //id - userId
           element={<HomePage loggedIn={loggedIn} />}
         />
 

@@ -20,7 +20,6 @@ const CreateQuizPage = () => {
     });
   }, []);
   const [allQutions, addques] = useState([]);
-  const n = 2;
   var x = 0;
   var t = "public";
   const Quiztype = (e) => {
@@ -61,11 +60,12 @@ const CreateQuizPage = () => {
       description: Description,
       t: t,
       allQuestions: allQutions,
+      userId: userData._id,
     });
 
     Axios.get("http://localhost:3001/getAllQuizzes").then((response) => {
       response.data.map((data) => {
-        if (data.description === Description && data.title === data.title) {
+        if (data.description === Description && data.title === title) {
           navigate("/quizCreated/" + data._id);
           return;
         }
@@ -81,7 +81,7 @@ const CreateQuizPage = () => {
     !DescriptionIsValid && DescriptionInputTouched ? "invalid" : "";
   const titleInputClasses = !titleIsValid && titleInputTouched ? "invalid" : "";
   const formIsValid =
-    DescriptionIsValid && titleIsValid && allQutions.length > 1;
+    DescriptionIsValid && titleIsValid && allQutions.length >= 1;
 
   return (
     <div>
@@ -159,14 +159,15 @@ const CreateQuizPage = () => {
             </div>
           </div>
           <div className={`form-control`}>
-            {
-              allQutions.length >= 1 &&
-              (<div className="QuizInfoContainer">
-                {
-                  allQutions.map((q,key)=><div>Question {key+1}) {q.Question}</div>)
-                }
-              </div>)
-            }
+            {allQutions.length >= 1 && (
+              <div className="QuizInfoContainer">
+                {allQutions.map((q, key) => (
+                  <div>
+                    Question {key + 1}) {q.Question}
+                  </div>
+                ))}
+              </div>
+            )}
             <section>
               {
                 <div className="QuestionCard">
