@@ -2,13 +2,15 @@ import React from "react";
 import userIcons from "../Images/gamer.png";
 import { useEffect, useState } from "react";
 import Axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 var year = new Date();
 year = year.getFullYear();
 
 function Profile() {
   const params = useParams();
+  const navigate = useNavigate();
+
   const [userData, setUserData] = useState({});
   useEffect(() => {
     Axios.get("http://localhost:3001/getUser/" + params.id).then((response) => {
@@ -19,7 +21,6 @@ function Profile() {
   return (
     <div className="profilePage">
       <header>
-        
         <h1>Quizzler</h1>
 
         <ul className="navbarItems">
@@ -52,7 +53,14 @@ function Profile() {
         <div className="QuizAttemptedResult">
           <h1>Your Past Results</h1>
           <p>To check the results of the quizzes you attempted </p>
-          <button type="button">Click Here</button>
+          <button
+            type="button"
+            onMouseDown={() => {
+              navigate("/yourResults/" + userData._id);
+            }}
+          >
+            Click Here
+          </button>
         </div>
       </div>
       <footer>

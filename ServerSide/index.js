@@ -49,6 +49,15 @@ app.post("/updateUserQuizzesCreated/:userId", async (req, res) => {
   res.send(reqUser);
 });
 
+app.post("/updateUserQuizzesCompleted/:userId", async (req, res) => {
+  const { userId } = req.params;
+  const { quizId, marksScored } = req.body;
+  const reqUser = await userModel.findById(userId);
+  reqUser.quizzesCompleted.push({ quizId: quizId, marksScored: marksScored });
+  await reqUser.save();
+  res.send(reqUser);
+});
+
 app.post("/postQuiz", async (req, res) => {
   const { title, description, t, allQuestions, userId } = req.body;
 
