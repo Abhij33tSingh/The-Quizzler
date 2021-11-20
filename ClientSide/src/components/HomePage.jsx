@@ -45,26 +45,6 @@ function HomePage(props) {
               Create a Quiz
             </li>
             <li>About us</li>
-            <li>
-              {!isLoggedIn && (
-                <div className="Signup">
-                  <button
-                    onClick={() => {
-                      return (
-                        <div>
-                          {
-                            navigate("/register")
-                            //console.log(props.q.allQuestions)
-                          }
-                        </div>
-                      );
-                    }}
-                  >
-                    Sign Up
-                  </button>
-                </div>
-              )}
-            </li>
           </ul>
           <nav
             className="UserName"
@@ -74,13 +54,31 @@ function HomePage(props) {
           >
             {isLoggedIn && <div>{name}</div>}
           </nav>
+          <nav>
+            {!isLoggedIn && (
+              <div className="Signup">
+                <button
+                  onClick={() => {
+                    return <div> {navigate("/register")}</div>;
+                  }}
+                >
+                  Sign Up
+                </button>
+              </div>
+            )}
+          </nav>
         </header>
         <div>{console.log(q)}</div>
         <div>
           {q.map((q, key) => {
             return (
               <div>
-                <SelectQuiz q={q} isLoggedIn={isLoggedIn} id={params.id} />
+                <SelectQuiz
+                  key={key}
+                  q={q}
+                  isLoggedIn={isLoggedIn}
+                  id={params.id}
+                />
               </div>
             );
           })}
