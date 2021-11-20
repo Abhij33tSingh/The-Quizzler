@@ -5,6 +5,7 @@ import { useNavigate,useParams, Link } from "react-router-dom";
 import QuestionBox from "./QuestionBox";
 
 function AttemptQuiz(props) {
+  const [state,setState] = useState('live')
   const isLoggedIn = props.loggedIn;
   const navigate = useNavigate();
   const [score,setScore] = useState(0);
@@ -56,7 +57,8 @@ function AttemptQuiz(props) {
       <div className = "Container">
         <h1>{allQues.title}</h1>
         <h4><div>{
-            response < a.length &&
+            state === 'live' &&
+            <div>{
         a.map((q)=><div>
             <QuestionBox 
                 question={q.Question} 
@@ -65,8 +67,19 @@ function AttemptQuiz(props) {
                 option3={q.option3} 
                 option4={q.option4}
                 selected={answer => computedAnswer(answer,q.Answer)}/>
-            </div>)}
-            {response === a.length ? (<h2>{ console.log(score)}{score}</h2>) : null }
+            </div>
+            
+            )}
+            <button onClick={()=>{
+              if(response === a.length)
+              {
+                setState('done');
+              }
+            }}> Submit</button>
+  
+            </div>
+            }
+            {response === a.length && state === 'done' ? (<h2>{ console.log(score)}{score}</h2>) : null }
             </div>
             </h4>
       </div>
