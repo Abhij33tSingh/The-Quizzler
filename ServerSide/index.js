@@ -40,6 +40,15 @@ app.get("/readUser", async (req, res) => {
   });
 });
 
+app.post("/updateUserQuizzesCreated/:userId", async (req, res) => {
+  const { userId } = req.params;
+  const { quizId } = req.body;
+  const reqUser = await userModel.findById(userId);
+  reqUser.quizzesCreated.push(quizId);
+  await reqUser.save();
+  res.send(reqUser);
+});
+
 app.post("/postQuiz", async (req, res) => {
   const { title, description, t, allQuestions, userId } = req.body;
 

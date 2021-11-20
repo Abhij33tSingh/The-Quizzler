@@ -12,8 +12,8 @@ year = year.getFullYear();
 const CreateQuizPage = () => {
   const navigate = useNavigate();
   const params = useParams();
-
   const [userData, setUserData] = useState({});
+
   useEffect(() => {
     Axios.get("http://localhost:3001/getUser/" + params.id).then((response) => {
       setUserData(response.data);
@@ -22,6 +22,7 @@ const CreateQuizPage = () => {
   const [allQutions, addques] = useState([]);
   var x = 0;
   var t = "public";
+  let quizCreatedId = "";
   const Quiztype = (e) => {
     t = e.target.value;
   };
@@ -50,12 +51,12 @@ const CreateQuizPage = () => {
     reset: DescriptionReset,
   } = useBasicInput((value) => value.trim().length !== 0);
 
-  const submissionHandler = (e) => {
+  const submissionHandler = async (e) => {
     e.preventDefault();
     if (!formIsValid) {
       return;
     }
-    Axios.post("http://localhost:3001/postQuiz", {
+    await Axios.post("http://localhost:3001/postQuiz", {
       title: title,
       description: Description,
       t: t,
@@ -63,7 +64,22 @@ const CreateQuizPage = () => {
       userId: userData._id,
     });
 
-    Axios.get("http://localhost:3001/getAllQuizzes").then((response) => {
+    await Axios.get("http://localhost:3001/getAllQuizzes").then((response) => {
+      response.data.map((val) => {
+        if (val.userId === userData._id && val.title === title) {
+          quizCreatedId = val._id;
+        }
+      });
+    });
+
+    await Axios.post(
+      "http://localhost:3001/updateUserQuizzesCreated/" + userData._id,
+      {
+        quizId: quizCreatedId,
+      }
+    );
+
+    await Axios.get("http://localhost:3001/getAllQuizzes").then((response) => {
       response.data.map((data) => {
         if (data.description === Description && data.title === title) {
           navigate("/quizCreated/" + data._id);
