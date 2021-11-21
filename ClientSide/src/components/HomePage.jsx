@@ -68,20 +68,22 @@ function HomePage(props) {
             )}
           </nav>
         </header>
-        <div>{console.log(q)}</div>
-        <div>
-          {q.map((q, key) => {
-            return (
-              <div>
-                <SelectQuiz
-                  key={key}
-                  q={q}
-                  isLoggedIn={isLoggedIn}
-                  id={params.id}
-                />
-              </div>
-            );
-          })}
+        <div className="HomePage">
+          <div>{console.log(q)}</div>
+          <div>
+            {q.map((q, key) => {
+              return (
+                <div>
+                  <SelectQuiz
+                    key={key}
+                    q={q}
+                    isLoggedIn={isLoggedIn}
+                    id={params.id}
+                  />
+                </div>
+              );
+            })}
+          </div>
         </div>
         <footer>
           <p> Copyright© {year} </p>{" "}

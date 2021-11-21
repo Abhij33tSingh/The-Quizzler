@@ -63,13 +63,13 @@ header h1 {
   font-weight: 700;
   text-align: left;
   cursor: pointer;
+  margin-right: 30px;
   
 }
 
 .UserName{
   list-style-type: none;
-    position: absolute;
-    right: 10px;
+    
     color: #fff;
     margin: 20px auto;
     font-size: 20px;
@@ -77,11 +77,13 @@ header h1 {
 }
 
 
-.HomeBody{
+.HomePage{
   background-image: url(./Images/abstract_geometric_banner_design_2507.jpg);
-    
   background-size: cover;
   padding: 10%;
+  overflow: hidden; 
+  padding: 100px;
+  width: 100%;   min-height:100vh;
 }
 
 
