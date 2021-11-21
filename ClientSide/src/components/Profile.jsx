@@ -44,17 +44,19 @@ function Profile() {
           <div>
             <h1 className="Greetings">Hello {userData.name}</h1>
             <div className="UserDetails">
+              {userData.quizzesCompleted && <div>
               <p>
-                Quiz Attempted: <span className="NumOfQuizAttempted"> {//userData.quizzesCompleted.length
-                
+                Quiz Attempted: <span className="NumOfQuizAttempted"> {userData.quizzesCompleted.length
+
                 }
                 </span>
               </p>
               <p>
-                Quiz Created: <span className="NumOfQuizCreated"> {//data.quizzesCreated.length
+                Quiz Created: {data.quizzesCreated && <span className="NumOfQuizCreated"> {data.quizzesCreated.length
                 }
-                </span>
+                </span>}
               </p>
+              </div>}
             </div>
           </div>
         </div>
