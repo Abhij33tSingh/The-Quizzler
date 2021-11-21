@@ -65,7 +65,7 @@ function AttemptQuiz(props) {
               {state === "live" && (
                 <div>
                   {a.map((q) => (
-                    <div>
+                    <div className="QuestionContainer">
                       <QuestionBox
                         question={q.Question}
                         option1={q.option1}
