@@ -11,14 +11,18 @@ function Profile() {
   const params = useParams();
   const navigate = useNavigate();
   const [userData, setUserData] = useState({});
-  useEffect(async () => {
-    await Axios.get("http://localhost:3001/getUser/" + params.id).then(
+  useEffect(() => {
+    Axios.get("http://localhost:3001/readUser").then(
       (response) => {
-        setUserData(response.data);
-        console.log(response.data);
+        for (let i = 0; i < response.data.length; i++) {
+          if (params.id === response.data[i]._id) 
+        {setUserData(response.data[i]);
+        console.log(response.data[i]);}
       }
+    }
     );
   }, []);
+  const data = Object.values(userData)
 
   return (
     <div>
@@ -41,10 +45,15 @@ function Profile() {
             <h1 className="Greetings">Hello {userData.name}</h1>
             <div className="UserDetails">
               <p>
-                Quiz Attempted: <span className="NumOfQuizAttempted">0</span>
+                Quiz Attempted: <span className="NumOfQuizAttempted"> {//userData.quizzesCompleted.length
+                
+                }
+                </span>
               </p>
               <p>
-                Quiz Created: <span className="NumOfQuizCreated">0</span>
+                Quiz Created: <span className="NumOfQuizCreated"> {//data.quizzesCreated.length
+                }
+                </span>
               </p>
             </div>
           </div>

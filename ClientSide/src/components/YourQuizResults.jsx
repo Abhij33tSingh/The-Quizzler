@@ -13,7 +13,8 @@ const PastResultsPage = () => {
 
   return (
     <div>
-      
+      This is the Past Results Page, Look at console and access data that you
+      need!
     </div>
   );
 };
