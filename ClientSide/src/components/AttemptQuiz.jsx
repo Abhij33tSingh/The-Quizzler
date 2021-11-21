@@ -10,7 +10,6 @@ function AttemptQuiz(props) {
   const navigate = useNavigate();
   const [score, setScore] = useState(0);
   const [response, setResponse] = useState(0);
-  const [name, setName] = useState("");
   const [allQues, setQues] = useState([]);
   const [a, setA] = useState([]);
   const params = useParams();
@@ -39,11 +38,6 @@ function AttemptQuiz(props) {
     setResponse(response + 1);
   };
   useEffect(() => {
-    Axios.get("http://localhost:3001/getUser/" + params.id).then((response) => {
-      setName(response.data.name);
-      //WE ARE GETTING ALL OF OUR USER DATA IN response.data
-    });
-
     Axios.get("http://localhost:3001/getAllQuizzes").then((response) => {
       for (let i = 0; i < response.data.length; i++) {
         if (response.data[i]._id === params.id2) {
@@ -52,7 +46,6 @@ function AttemptQuiz(props) {
           break;
         }
       }
-      //setQues(response.data);
 
       //WE ARE GETTING ALL OF OUR QUIZZES IN response
     });

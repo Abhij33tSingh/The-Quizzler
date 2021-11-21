@@ -53,8 +53,11 @@ app.post("/updateUserQuizzesCompleted/:userId", async (req, res) => {
   const { userId } = req.params;
   const { quizId, marksScored } = req.body;
   const reqUser = await userModel.findById(userId);
+  const reqQuiz = await quizModel.findById(quizId);
+  reqQuiz.attempterIDs.push(userId);
   reqUser.quizzesCompleted.push({ quizId: quizId, marksScored: marksScored });
   await reqUser.save();
+  await reqQuiz.save();
   res.send(reqUser);
 });
 
