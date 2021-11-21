@@ -1,6 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
 
-
+body {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  line-height: 1.666;
+  background: #c0d2d4;
+  color: #555;
+}
 
 
 
@@ -92,14 +98,43 @@ button{
   font-size: 20px;
 }
 
+.QuizContent{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:center;
+  margin: 4rem auto;
+  max-width: 100%;
+  
+}
+
 .QuizContainer{
-  background-color:rgb(240, 240, 240,0.7);
-  padding: 50px;
+  text-align: center;
+  color: #2ec2b0;
+  width: 400px;
+  height: 300px;
+  margin-bottom: 2rem;
+  margin-right: 4rem;
+  padding: 2rem;
+  background-color:rgb(240, 240, 240,0.9);
   border-radius: 50px 5px;
   margin-bottom: 20px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);;
-  display: flex;
-  width: 40%;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05), 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: all 100ms ease-in-out;
+}
+
+.QuizTitle{
+   margin-bottom: 10px;
+}
+
+.QuizDescription{
+   color: #3fa5b0
+}
+
+@media(max-width:768px) {
+  .QuizContainer{
+    width: 400px
+  }
+  
 }
 
 

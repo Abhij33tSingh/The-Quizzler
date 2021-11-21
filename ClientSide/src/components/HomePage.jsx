@@ -70,7 +70,7 @@ function HomePage(props) {
         </header>
         <div className="HomePage">
           <div>{console.log(q)}</div>
-          <div>
+          <div className="QuizContent">
             {q.map((q, key) => {
               return (
                 <div>
