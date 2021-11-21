@@ -14,10 +14,10 @@ const SelectQuiz = (props) => {
   };
   return (
     <div className="QuizContainer">
-      <p className="test">{props.q.title}</p>
-      <p className="test">{props.q.description}</p>
+      <h1 className="QuizTitle">{props.q.title}</h1>
+      <p className="QuizDescription">{props.q.description}</p>
 
-      <button className="Attempt Button" onClick={attempt}>
+      <button className="AttemptButton" onClick={attempt}>
         Attempt Quiz
       </button>
     </div>
