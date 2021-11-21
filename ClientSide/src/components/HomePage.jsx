@@ -68,7 +68,7 @@ function HomePage(props) {
             )}
           </nav>
         </header>
-        <div className="HomePage">
+        <div className="Homepage">
           <div>{console.log(q)}</div>
           <div className="QuizContent">
             {q.map((q, key) => {
