@@ -4,6 +4,9 @@ import Axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import QuestionBox from "./QuestionBox";
 
+var year = new Date();
+year = year.getFullYear();
+
 function AttemptQuiz(props) {
   const [state, setState] = useState("live");
   const isLoggedIn = props.loggedIn;
@@ -58,8 +61,10 @@ function AttemptQuiz(props) {
           <h1 onMouseDown={() => navigate("/homepage/")}>Quizzler</h1>
         </header>
 
-        <div className="Container">
-          <h1>{allQues.title}</h1>
+        <div className="AttemptPage">
+          <div className="AttemptQuizTitle">
+            <h1>{allQues.title}</h1>
+          </div>
           <h4>
             <div>
               {state === "live" && (
@@ -76,7 +81,12 @@ function AttemptQuiz(props) {
                       />
                     </div>
                   ))}
-                  <button onClick={submitHandler}> Submit</button>
+                  <div className="AttemptSubmit">
+                    <button className="SubmitButton" onClick={submitHandler}>
+                      {" "}
+                      Submit
+                    </button>
+                  </div>
                 </div>
               )}
               {response === a.length && state === "done" ? (
@@ -87,6 +97,9 @@ function AttemptQuiz(props) {
             </div>
           </h4>
         </div>
+        <footer className="AttemptFooter">
+          <p> Copyright© {year} </p>{" "}
+        </footer>
       </div>
     );
   }
