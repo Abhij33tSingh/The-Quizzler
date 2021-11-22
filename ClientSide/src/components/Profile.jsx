@@ -10,7 +10,7 @@ year = year.getFullYear();
 function Profile() {
   const params = useParams();
   const navigate = useNavigate();
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState([]);
   useEffect(() => {
     Axios.get("http://localhost:3001/readUser").then(
       (response) => {
@@ -52,7 +52,7 @@ function Profile() {
                 </span>
               </p>
               <p>
-                Quiz Created: {data.quizzesCreated && <span className="NumOfQuizCreated"> {data.quizzesCreated.length
+                Quiz Created: {userData.quizzesCreated && <span className="NumOfQuizCreated"> {userData.quizzesCreated.length
                 }
                 </span>}
               </p>

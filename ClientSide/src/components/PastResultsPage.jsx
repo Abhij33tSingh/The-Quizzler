@@ -7,15 +7,8 @@ const PastResultsPage = () => {
   const [userData,setData] = useState([]);
   const [quiz,setquiz] = useState([]);
   const navigate = useNavigate();
-  const getQuiz = (id) =>{
-    Axios.get("http://localhost:3001/getAllQuizzes").then((response)=>{
-      for (let i = 0; i < response.data.length; i++) {
-        if (id === response.data[i]._id){
-          setquiz([...quiz,response.data[i]]);
-        }
-      }
-    })
-  }
+  var q = []
+  
 
   useEffect(() => {
     Axios.get("http://localhost:3001/readUser/").then((response) => {
@@ -25,7 +18,22 @@ const PastResultsPage = () => {
       console.log(response.data[i]);}
     }});
   }, []);
-
+  const getQuiz = (quizId)=>{
+    Axios.get("http://localhost:3001/getAllQuizzes").then((response)=>
+        {
+          for (let i = 0; i < response.data.length; i++)
+          {
+            if(quizId === response.data[i]._id)
+            {
+                  setquiz([...quiz,response.data[i].title])
+                  q.push(response.data[i].title)
+                  break;
+            }
+          }
+        }
+        )
+  }
+  
   return (
     <div>
       <header>
@@ -42,10 +50,11 @@ const PastResultsPage = () => {
       </header>
       <div className="QuizContent">
       {userData.quizzesCompleted && 
-      <div>
-        {userData.quizzesCompleted.map((q)=><div>{q.marksScored}   {getQuiz(q.quizId)}</div>)}
-       
-        </div>}
+      (<div>
+        {userData.quizzesCompleted.map((q,key)=><div key = {key}> {key} {q.marksScored}  {getQuiz(q.quizId)} 
+        </div>)}
+        
+       </div>)}
 
         </div>
     </div>
