@@ -70,7 +70,11 @@ function Profile() {
           <div className="HostResult">
             <h1>Results of your Quizzes</h1>
             <p>To check the results of the quizzes you created </p>
-            <button type="button">Click Here</button>
+            <button type="button"
+            onMouseDown={() => {
+              navigate("/pastResults/" + userData._id);
+            }}
+            >Click Here</button>
           </div>
           <div className="QuizAttemptedResult">
             <h1>Your Past Results</h1>
