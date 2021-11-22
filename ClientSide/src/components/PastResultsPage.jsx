@@ -1,11 +1,13 @@
 import { useParams,useNavigate } from "react-router-dom";
-import { useEffect,useState} from "react";
+import { Component, useEffect,useState} from "react";
 import Axios from "axios";
+import QuizDetail from "./QuizDetail";
 
 const PastResultsPage = () => {
   const params = useParams();
   const [userData,setData] = useState([]);
   const [quiz,setquiz] = useState([]);
+  const [quizz,setquizz] = useState([]);
   const navigate = useNavigate();
   var q = []
   
@@ -18,6 +20,7 @@ const PastResultsPage = () => {
       console.log(response.data[i]);}
     }});
   }, []);
+  var u = 0;
   const getQuiz = (quizId)=>{
     Axios.get("http://localhost:3001/getAllQuizzes").then((response)=>
         {
@@ -25,14 +28,24 @@ const PastResultsPage = () => {
           {
             if(quizId === response.data[i]._id)
             {
-                  setquiz([...quiz,response.data[i].title])
-                  q.push(response.data[i].title)
+                  setquiz([response.data[i].title])
+                  console.log(response.data[i].title)
+                  
                   break;
             }
           }
         }
         )
+       return(quiz)       
   }
+  const getQuizz = ()=>{
+    if(userData.quizzesCompleted){
+    userData.quizzesCompleted.map((q,key)=>{
+      setquizz([...quizz,getQuiz(q.quizId)])
+    })
+  }
+  }
+  //useEffect(getQuizz,[])
   
   return (
     <div>
@@ -51,8 +64,13 @@ const PastResultsPage = () => {
       <div className="QuizContent">
       {userData.quizzesCompleted && 
       (<div>
-        {userData.quizzesCompleted.map((q,key)=><div key = {key}> {key} {q.marksScored}  {getQuiz(q.quizId)} 
+        {userData.quizzesCompleted.map((q,key)=><div key = {key}> {key+1})  {<QuizDetail quizId={q.quizId}/>}       ({q.marksScored})
         </div>)}
+        <div>
+          {
+            console.log(quizz)
+          }
+        </div>
         
        </div>)}
 
