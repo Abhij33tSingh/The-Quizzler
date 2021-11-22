@@ -40,35 +40,36 @@ function HomePage(props) {
           <h1 onMouseDown={() => navigate("/homepage/" + params.id)}>
             Quizzler
           </h1>
-          <ul className="navbarItems">
-            <li onClick={() => navigate("/createquiz/" + params.id)}>
+          <div className="navbarItems">
+            <nav onClick={() => navigate("/createquiz/" + params.id)}>
               Create a Quiz
-            </li>
-            <li>About us</li>
-          </ul>
-          <nav
-            className="UserName"
-            onMouseDown={() => {
-              navigate("/profile/" + params.id);
-            }}
-          >
-            {isLoggedIn && <div>{name}</div>}
-          </nav>
-          <nav>
-            {!isLoggedIn && (
-              <div className="Signup">
-                <button
-                  onClick={() => {
-                    return <div> {navigate("/register")}</div>;
-                  }}
-                >
-                  Sign Up
-                </button>
-              </div>
-            )}
-          </nav>
+            </nav>
+            <nav>About us</nav>
+
+            <nav
+              className="UserName"
+              onMouseDown={() => {
+                navigate("/profile/" + params.id);
+              }}
+            >
+              {isLoggedIn && <div>{name}</div>}
+            </nav>
+            <nav>
+              {!isLoggedIn && (
+                <div className="Signup">
+                  <button
+                    onClick={() => {
+                      return <div> {navigate("/register")}</div>;
+                    }}
+                  >
+                    Sign Up
+                  </button>
+                </div>
+              )}
+            </nav>
+          </div>
         </header>
-        <div className="Homepage">
+        <div className="HomePage">
           <div>{console.log(q)}</div>
           <div className="QuizContent">
             {q.map((q, key) => {
