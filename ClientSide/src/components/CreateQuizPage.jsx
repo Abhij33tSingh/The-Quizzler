@@ -103,8 +103,8 @@ const CreateQuizPage = () => {
     <div>
       <header>
         <h1 onMouseDown={() => navigate("/homepage/" + params.id)}>Quizzler</h1>
-        <ul className="navbarItems">
-          <li
+        <div className="navbarItems">
+          <nav
             onClick={() => {
               return (
                 <div>
@@ -117,10 +117,10 @@ const CreateQuizPage = () => {
             }}
           >
             Attempt a Quiz
-          </li>
-          <li>About us</li>
-          <li>{userData.name}</li>
-        </ul>
+          </nav>
+          <nav>About us</nav>
+          <nav>{userData.name}</nav>
+        </div>
       </header>
       <div className="CreateQuizPage">
         <form onSubmit={submissionHandler}>
