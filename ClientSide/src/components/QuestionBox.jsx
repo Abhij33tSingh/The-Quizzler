@@ -20,7 +20,6 @@ const QuestionBox = ({
           onClick={() => {
             setAnswer([option]);
             selected(option);
-            // document.getElementsByClassName("Options").classlist.add("correct");
           }}
         >
           {option}

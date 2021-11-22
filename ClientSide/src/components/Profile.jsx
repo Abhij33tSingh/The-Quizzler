@@ -12,31 +12,30 @@ function Profile() {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({});
   useEffect(() => {
-    Axios.get("http://localhost:3001/readUser").then(
-      (response) => {
-        for (let i = 0; i < response.data.length; i++) {
-          if (params.id === response.data[i]._id) 
-        {setUserData(response.data[i]);
-        console.log(response.data[i]);}
+    Axios.get("http://localhost:3001/readUser").then((response) => {
+      for (let i = 0; i < response.data.length; i++) {
+        if (params.id === response.data[i]._id) {
+          setUserData(response.data[i]);
+          console.log(response.data[i]);
+        }
       }
-    }
-    );
+    });
   }, []);
-  const data = Object.values(userData)
+  const data = Object.values(userData);
 
   return (
     <div>
       <header>
         <h1 onClick={() => navigate("/homepage/" + params.id)}>Quizzler</h1>
 
-        <ul className="ProfilenavbarItems">
-          <li onClick={() => navigate("/createquiz/" + params.id)}>
+        <div className="ProfilenavbarItems">
+          <nav onClick={() => navigate("/createquiz/" + params.id)}>
             Create a Quiz
-          </li>
-          <li>About us</li>
-          <li>Start Quiz</li>
-          <li>{userData.name}</li>
-        </ul>
+          </nav>
+          <nav>About us</nav>
+          <nav>Start Quiz</nav>
+          <nav>{userData.name}</nav>
+        </div>
       </header>
       <div className="profilePage">
         <div className="IntroSection">
@@ -44,19 +43,26 @@ function Profile() {
           <div>
             <h1 className="Greetings">Hello {userData.name}</h1>
             <div className="UserDetails">
-              {userData.quizzesCompleted && <div>
-              <p>
-                Quiz Attempted: <span className="NumOfQuizAttempted"> {userData.quizzesCompleted.length
-
-                }
-                </span>
-              </p>
-              <p>
-                Quiz Created: {data.quizzesCreated && <span className="NumOfQuizCreated"> {data.quizzesCreated.length
-                }
-                </span>}
-              </p>
-              </div>}
+              {userData.quizzesCompleted && (
+                <div>
+                  <p>
+                    Quiz Attempted:{" "}
+                    <span className="NumOfQuizAttempted">
+                      {" "}
+                      {userData.quizzesCompleted.length}
+                    </span>
+                  </p>
+                  <p>
+                    Quiz Created:{" "}
+                    {
+                      <span className="NumOfQuizCreated">
+                        {" "}
+                        {userData.quizzesCreated.length}
+                      </span>
+                    }
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -40,12 +40,12 @@ function HomePage(props) {
           <h1 onMouseDown={() => navigate("/homepage/" + params.id)}>
             Quizzler
           </h1>
-          <ul className="navbarItems">
-            <li onClick={() => navigate("/createquiz/" + params.id)}>
+          <div className="navbarItems">
+            <nav onClick={() => navigate("/createquiz/" + params.id)}>
               Create a Quiz
-            </li>
-            <li>About us</li>
-          </ul>
+            </nav>
+            <nav>About us</nav>
+          </div>
           <nav
             className="UserName"
             onMouseDown={() => {
@@ -69,7 +69,6 @@ function HomePage(props) {
           </nav>
         </header>
         <div className="Homepage">
-          <div>{console.log(q)}</div>
           <div className="QuizContent">
             {q.map((q, key) => {
               return (
@@ -84,7 +83,9 @@ function HomePage(props) {
               );
             })}
           </div>
+          <div className="space"></div>
         </div>
+
         <footer>
           <p> Copyright© {year} </p>{" "}
         </footer>
