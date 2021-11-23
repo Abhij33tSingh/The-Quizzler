@@ -9,12 +9,20 @@ const ListOfQuizzes = () => {
   const navigate = useNavigate();
   const [quizzesCreated, setQuizzesCreated] = useState([]);
   const [userData, setUserData] = useState([]);
+  const [viewerData, setViewerData] = useState([]);
+  let areSame = params.userId === params.viewerId ? true : false;
 
   useEffect(() => {
     Axios.get("http://localhost:3001/getUser/" + params.userId).then(
       (response) => {
         setQuizzesCreated(response.data.quizzesCreated);
         setUserData(response.data);
+      }
+    );
+
+    Axios.get("http://localhost:3001/getUser/" + params.viewerId).then(
+      (response) => {
+        setViewerData(response.data);
       }
     );
   }, [params.userId]);
@@ -34,8 +42,12 @@ const ListOfQuizzes = () => {
           <nav onClick={() => navigate("/homepage/" + params.userId)}>
             Start Quiz
           </nav>
-          <nav onClick={() => navigate("/profile/" + params.userId)}>
-            {userData.name}
+          <nav
+            onClick={() =>
+              navigate("/profile/" + params.viewerId + "/" + params.viewerId)
+            }
+          >
+            {viewerData.name}
           </nav>
         </div>
       </header>
@@ -43,7 +55,7 @@ const ListOfQuizzes = () => {
         <div className="IntroSection">
           <img className="UserImage" src={userIcons} alt="user icon" />
           <div>
-            <h1 className="Greetings">Hello {userData.name}</h1>
+            <h1 className="Greetings">{userData.name}</h1>
             <div className="UserDetails">
               {userData.quizzesCompleted && (
                 <div>
@@ -62,27 +74,40 @@ const ListOfQuizzes = () => {
           </div>
         </div>
         <div className="QuizListBody">
-          <h2>These are the Quizzes you have created</h2>
+          <h2>
+            These are the Quizzes {areSame && viewerData.name}{" "}
+            {!areSame && userData.name} created
+          </h2>
           {quizzesCreated.map((quizId) => {
             return (
               <div className="QuizList">
                 <div className="QuizListItems">
                   {<QuizDetail quizId={quizId} />}
                 </div>
+                {areSame && (
+                  <button
+                    onClick={() => {
+                      navigate(
+                        "/AttempterResults/" +
+                          quizId +
+                          "/" +
+                          params.userId +
+                          "/" +
+                          params.userId
+                      );
+                    }}
+                  >
+                    {" "}
+                    Attempter Results{" "}
+                  </button>
+                )}
                 <button
                   onClick={() => {
-                    navigate(
-                      "/AttempterResults/" +
-                        quizId +
-                        "/" +
-                        params.userId +
-                        "/" +
-                        params.userId
-                    );
+                    navigate("/attempt/" + viewerData._id + "/" + quizId);
                   }}
                 >
                   {" "}
-                  click me{" "}
+                  Attempt this Quiz{" "}
                 </button>
               </div>
             );
