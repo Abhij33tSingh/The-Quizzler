@@ -16,7 +16,8 @@ function Profile() {
       setUserData(response.data);
       console.log(response.data);
     });
-  }, [params.id]);
+  }, []);
+  const data = Object.values(userData);
 
   return (
     <div>
