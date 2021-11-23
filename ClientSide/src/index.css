@@ -523,52 +523,18 @@ textarea{
   text-align: center;
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  border: 3px dotted #555;
+  border: 3px solid #ddd;
   width: 100%;
 }
 
 #Results td, #Results th {
-  border: 1px solid #555;
+  border: 1px solid #ddd;
   padding: 8px;
 }
 
 #Results tr:nth-child(even)
 
-#Results tr:hover {background-color: #555;}
-
-.QuizCreated{
-  width: 80%;
-  margin: 50px auto;
-  text-align: center;
-}
-
-.QuizCreated h1{
-  margin:20px;
-  border:2px solid bisque;
-  color: #077807;
-}
-
-.QuizCreated button{
-  width: 200px;
-  height:40px;
-  background-color: #009DAE
-}
-
-.QuizCreated button:hover{
-  background-color: #6166B3;
-}
-
-
-.QuizListItems{
-  display: inline-block;
-  font-size: 20px;
-  width: 40%;
-}
-
-.QuizList{
-  text-align: center;
-}
-
+#Results tr:hover {background-color: #ddd;}
 
 
 

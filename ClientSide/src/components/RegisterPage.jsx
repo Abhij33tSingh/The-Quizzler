@@ -3,6 +3,9 @@ import { useEffect } from "react";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 
+var year = new Date();
+year = year.getFullYear();
+
 const BasicForm = (props) => {
   useEffect(() => {
     Axios.get("http://localhost:3001/readUser").then((response) => {
@@ -115,6 +118,9 @@ const BasicForm = (props) => {
           </form>
         </div>
       </div>
+      <footer>
+        <p> Copyright© {year} </p>{" "}
+      </footer>
     </div>
   );
 };
