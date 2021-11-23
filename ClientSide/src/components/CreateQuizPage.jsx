@@ -12,7 +12,7 @@ year = year.getFullYear();
 const CreateQuizPage = () => {
   const navigate = useNavigate();
   const params = useParams();
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState([]);
 
   useEffect(() => {
     Axios.get("http://localhost:3001/getUser/" + params.id).then((response) => {
@@ -151,27 +151,6 @@ const CreateQuizPage = () => {
               <br />
             </div>
             <div className={`form-control`} onClick={Quiztype}>
-              <div className="Quiztype">
-                <div className="PrivateRadio">
-                  <label>Private</label>
-                  <input
-                    className="RadioInput"
-                    type="radio"
-                    name="quiz-type"
-                    value="private"
-                  />
-                </div>
-                <div className="PublicRadio">
-                  <label>Public</label>
-                  <input
-                    className="RadioInput"
-                    type="radio"
-                    name="quiz-type"
-                    value="public"
-                    checked
-                  />
-                </div>
-              </div>
             </div>
           </div>
           <div className={`form-control`}>
