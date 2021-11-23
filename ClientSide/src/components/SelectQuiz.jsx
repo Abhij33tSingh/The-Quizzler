@@ -16,14 +16,7 @@ const SelectQuiz = (props) => {
   });
 
   const attempt = () => {
-    return (
-      <div>
-        {
-          navigate("/attempt/" + props.id + "/" + props.q._id)
-          //console.log(props.q.allQuestions)
-        }
-      </div>
-    );
+    return <div>{navigate("/attempt/" + props.id + "/" + props.q._id)}</div>;
   };
   return (
     <div className="QuizContainer">

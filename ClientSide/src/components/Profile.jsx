@@ -11,11 +11,19 @@ function Profile() {
   const params = useParams();
   const navigate = useNavigate();
   const [userData, setUserData] = useState([]);
+  const [viewerData, setViewerData] = useState([]);
+  let areSame = params.id === params.viewerId ? true : false;
   useEffect(() => {
     Axios.get("http://localhost:3001/getUser/" + params.id).then((response) => {
       setUserData(response.data);
-      console.log(response.data);
     });
+
+    Axios.get("http://localhost:3001/getUser/" + params.viewerId).then(
+      (response) => {
+        console.log(response.data);
+        setViewerData(response.data);
+      }
+    );
   }, []);
   const data = Object.values(userData);
 
@@ -30,9 +38,9 @@ function Profile() {
           </nav>
           <nav onClick={() => navigate("/AboutUs/" + params.id)}>About us</nav>
           <nav onClick={() => navigate("/homepage/" + params.id)}>
-            Start Quiz
+            Select Quiz
           </nav>
-          <nav>{userData.name}</nav>
+          <nav>{viewerData.name}</nav>
         </div>
       </header>
       <div className="profilePage">
@@ -66,8 +74,13 @@ function Profile() {
         </div>
         <div className="ResultsContainer">
           <div className="HostResult">
-            <h1>Results of your Quizzes</h1>
-            <p>To check the results of the quizzes you created </p>
+            {areSame && <h1>Results of your Quizzes</h1>}
+            {areSame && <p>To check the results of the quizzes you created </p>}
+            {!areSame && <h1>List Of Quizzes</h1>}
+            {!areSame && (
+              <p>To check list of quizzes created by {userData.name}</p>
+            )}
+
             <button
               type="button"
               onMouseDown={() => {
@@ -77,18 +90,20 @@ function Profile() {
               Click Here
             </button>
           </div>
-          <div className="QuizAttemptedResult">
-            <h1>Your Past Results</h1>
-            <p>To check the results of the quizzes you attempted </p>
-            <button
-              type="button"
-              onMouseDown={() => {
-                navigate("/pastResults/" + userData._id);
-              }}
-            >
-              Click Here
-            </button>
-          </div>
+          {areSame && (
+            <div className="QuizAttemptedResult">
+              <h1>Your Past Results</h1>
+              <p>To check the results of the quizzes you attempted </p>
+              <button
+                type="button"
+                onMouseDown={() => {
+                  navigate("/pastResults/" + userData._id);
+                }}
+              >
+                Click Here
+              </button>
+            </div>
+          )}
         </div>
       </div>
       <footer>
