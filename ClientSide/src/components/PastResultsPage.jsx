@@ -31,10 +31,10 @@ const PastResultsPage = () => {
           </nav>
         </div>
       </header>
-      <div className="QuizContent">
+      <div>
         {userData.quizzesCompleted && (
           <div>
-            <h1 id="title">Past Results</h1>
+            <h1 className="Title">Past Results</h1>
             <table id="Results">
               <tbody>
                 <tr>
