@@ -11,6 +11,7 @@ import AttemptQuiz from "./components/AttemptQuiz";
 import PastResultsPage from "./components/PastResultsPage";
 import AttempterResults from "./components/AttempterResults";
 import ListOfQuizzes from "./components/ListOfQuizzes";
+import AboutUs from "./components/AboutUs";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -57,6 +58,8 @@ function App() {
           path="/attempterResults/:quizId/:hostId/:viewerId"
           element={<AttempterResults />}
         />
+
+        <Route path="/AboutUs/:id" element={<AboutUs />} />
       </Routes>
     </div>
   );
