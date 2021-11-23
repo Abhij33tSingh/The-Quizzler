@@ -9,6 +9,7 @@ year = year.getFullYear();
 
 function HomePage(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(props.loggedIn);
+  let i = 0;
 
   // const id = props.id;
   const [name, setName] = useState("");
@@ -35,8 +36,11 @@ function HomePage(props) {
     } else {
       setIsLoggedIn(true);
     }
+
+    i = 0;
   }, []);
   const q = Object.values(allQuizzes);
+  console.log(q);
   if (true) {
     return (
       <div>
@@ -76,7 +80,6 @@ function HomePage(props) {
           </div>
         </header>
         <div className="HomePage">
-          <div>{console.log(q)}</div>
           <div className="QuizContent">
             {q.map((q, key) => {
               return (
@@ -89,6 +92,7 @@ function HomePage(props) {
                   />
                 </div>
               );
+              i++;
             })}
           </div>
         </div>
