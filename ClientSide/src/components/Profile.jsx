@@ -28,8 +28,10 @@ function Profile() {
           <nav onClick={() => navigate("/createquiz/" + params.id)}>
             Create a Quiz
           </nav>
-          <nav>About us</nav>
-          <nav>Start Quiz</nav>
+          <nav onClick={() => navigate("/AboutUs/" + params.id)}>About us</nav>
+          <nav onClick={() => navigate("/homepage/" + params.id)}>
+            Start Quiz
+          </nav>
           <nav>{userData.name}</nav>
         </div>
       </header>

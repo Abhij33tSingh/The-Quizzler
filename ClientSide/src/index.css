@@ -58,7 +58,7 @@ nav {
     color: #fff;    
     font-size: 20px;
     padding: 20px;
-    margin-bottom: 10px;
+    
   }
 
 
@@ -495,7 +495,21 @@ textarea{
 
 
 
+.AboutQuizzler{
+  width: 80%;
+  margin: 20px auto;
+  padding: 10px;
+}
 
+.AboutQuizzler h1{
+  width: 60%;
+  border-bottom: 4px dotted #555;
+  margin-bottom: 20px;
+}
+
+.AboutQuizzler p{
+  width: 90%;
+}
 
 
 

@@ -118,7 +118,7 @@ const CreateQuizPage = () => {
           >
             Attempt a Quiz
           </nav>
-          <nav>About us</nav>
+          <nav onClick={() => navigate("/AboutUs/" + params.id)}>About us</nav>
           <nav>{userData.name}</nav>
         </div>
       </header>
