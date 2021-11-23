@@ -4,7 +4,9 @@ import Axios from "axios";
 const GetUserDetails = (props) => {
   const [name, setName] = useState([]);
   const [score, setScore] = useState([]);
+  const [quizLength, setQuizLength] = useState([]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
     await Axios.get("http://localhost:3001/getUser/" + props.userId).then(
       (response) => {
@@ -17,13 +19,25 @@ const GetUserDetails = (props) => {
         }
       }
     );
-  }, []);
+    await Axios.get("http://localhost:3001/getAllQuizzes").then((response) => {
+      for (let i = 0; i < response.data.length; i++) {
+        if (props.quizId === response.data[i]._id) {
+          setQuizLength([response.data[i].allQuestions.length]);
+          break;
+        }
+      }
+    });
+  }, [props.quizId, props.userId]);
 
   return (
-    <span>
-      {name} - {score}
-      <br />
-    </span>
+    <div className="AttempterResults">
+      <span className="attempterName">{name} Scored</span>
+      <span className="score">{score}</span>
+      <span>
+        {" "}
+        / {quizLength} <br />
+      </span>
+    </div>
   );
 };
 

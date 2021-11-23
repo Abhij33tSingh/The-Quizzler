@@ -70,7 +70,7 @@ const AttempterResults = () => {
             <h1 className="Greetings">Hello {userData.name}</h1>
           </div>
         </div>
-        <div>
+        <div className="ResultOfAttempter">
           {attempterIDs.map((attempterID) => {
             return (
               <GetUserDetails userId={attempterID} quizId={params.quizId} />
