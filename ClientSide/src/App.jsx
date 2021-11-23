@@ -1,6 +1,6 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useState } from "react";
-
+import AboutUs from "./components/AboutUs";
 import LoginPage from "./components/LoginPage";
 import RegisterPage from "./components/RegisterPage";
 import CreateQuizPage from "./components/CreateQuizPage";
@@ -9,7 +9,6 @@ import QuizCreated from "./components/QuizCreated";
 import Profile from "./components/Profile";
 import AttemptQuiz from "./components/AttemptQuiz";
 import PastResultsPage from "./components/PastResultsPage";
-import AttempterResults from "./components/AttempterResults";
 import ListOfQuizzes from "./components/ListOfQuizzes";
 
 function App() {
@@ -34,6 +33,7 @@ function App() {
           path="/homepage"
           element={<Navigate replace to="/login" />}
         />
+        <Route path="/AboutUs/:id" element={<AboutUs />} />
         <Route
           exact
           path="/attempt"
@@ -44,19 +44,18 @@ function App() {
           element={<AttemptQuiz loggedIn={loggedIn} />}
         />
 
+        <Route
+          path="/ListOfAllQuizzes/:userId" //id-UserId, id2-quizId
+          element={<ListOfQuizzes loggedIn={loggedIn} />}
+        />
+
         <Route path="/pastResults/:id" element={<PastResultsPage />} />
         <Route
           path="/homepage/:id" //id - userId
-          element={<HomePage loggedIn={loggedIn} setIsLoggedIn={setLoggedIn} />}
+          element={<HomePage loggedIn={loggedIn} />}
         />
 
         <Route path="/profile/:id" element={<Profile />} />
-
-        <Route path="/listOfAllQuizzes/:userId" element={<ListOfQuizzes />} />
-        <Route
-          path="/attempterResults/:quizId/:hostId/:viewerId"
-          element={<AttempterResults />}
-        />
       </Routes>
     </div>
   );
