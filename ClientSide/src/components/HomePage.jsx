@@ -14,6 +14,7 @@ function HomePage(props) {
   // const id = props.id;
   const [name, setName] = useState("");
   const [allQuizzes, setAllQuizzes] = useState({});
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   const params = useParams();
 
@@ -63,36 +64,40 @@ function HomePage(props) {
             >
               {name}
             </nav>
-            {/* <nav>
-              {!isLoggedIn && (
-                <div className="Signup">
-                  <button
-                    onClick={() => {
-                      return <div> {navigate("/register")}</div>;
-                    }}
-                  >
-                    Sign Up
-                  </button>
-                </div>
-              )}
-            </nav> */}
           </div>
         </header>
+        <input
+          type="text"
+          placeholder="Search"
+          onChange={(event) => {
+            setSearchTerm(event.target.value);
+          }}
+        />
         <div className="HomePage">
           <div className="QuizContent">
-            {q.map((q, key) => {
-              return (
-                <div>
-                  <SelectQuiz
-                    key={key}
-                    q={q}
-                    isLoggedIn={isLoggedIn}
-                    id={params.id}
-                  />
-                </div>
-              );
-              i++;
-            })}
+            {q
+              .filter((q) => {
+                if (searchTerm == "") {
+                  return q;
+                } else if (
+                  q.title.toLowerCase().includes(searchTerm.toLowerCase())
+                ) {
+                  return q;
+                }
+              })
+              .map((q, key) => {
+                return (
+                  <div>
+                    <SelectQuiz
+                      key={key}
+                      q={q}
+                      isLoggedIn={isLoggedIn}
+                      id={params.id}
+                    />
+                  </div>
+                );
+                i++;
+              })}
           </div>
         </div>
         <footer>
