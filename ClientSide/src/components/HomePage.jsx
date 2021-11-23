@@ -8,8 +8,7 @@ var year = new Date();
 year = year.getFullYear();
 
 function HomePage(props) {
-  const isLoggedIn = props.loggedIn;
-  const setIsLoggedIn = props.setIsLoggedIn;
+  const [isLoggedIn, setIsLoggedIn] = useState(props.loggedIn);
 
   // const id = props.id;
   const [name, setName] = useState("");
@@ -49,7 +48,9 @@ function HomePage(props) {
             <nav onClick={() => navigate("/createquiz/" + params.id)}>
               Create a Quiz
             </nav>
-            <nav>About us</nav>
+            <nav onClick={() => navigate("/AboutUs/" + params.id)}>
+              About us
+            </nav>
 
             <nav
               className="UserName"
@@ -57,9 +58,9 @@ function HomePage(props) {
                 navigate("/profile/" + params.id);
               }}
             >
-              {isLoggedIn && <div>{name}</div>}
+              {name}
             </nav>
-            <nav>
+            {/* <nav>
               {!isLoggedIn && (
                 <div className="Signup">
                   <button
@@ -71,7 +72,7 @@ function HomePage(props) {
                   </button>
                 </div>
               )}
-            </nav>
+            </nav> */}
           </div>
         </header>
         <div className="HomePage">

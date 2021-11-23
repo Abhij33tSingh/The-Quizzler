@@ -20,14 +20,16 @@ const PastResultsPage = () => {
       <header>
         <h1 onClick={() => navigate("/homepage/" + params.id)}>Quizzler</h1>
 
-        <ul className="ProfilenavbarItems">
-          <li onClick={() => navigate("/createquiz/" + params.id)}>
+        <div className="ProfilenavbarItems">
+          <nav onClick={() => navigate("/createquiz/" + params.id)}>
             Create a Quiz
-          </li>
-          <li>About us</li>
-          <li>Start Quiz</li>
-          <li>{userData.name}</li>
-        </ul>
+          </nav>
+          <nav onClick={() => navigate("/AboutUs/" + params.id)}>About us</nav>
+          <nav>Start Quiz</nav>
+          <nav onClick={() => navigate("/Profile/" + params.id)}>
+            {userData.name}
+          </nav>
+        </div>
       </header>
       <div className="QuizContent">
         {userData.quizzesCompleted && (
