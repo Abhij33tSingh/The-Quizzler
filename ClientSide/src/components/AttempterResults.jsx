@@ -3,24 +3,45 @@ import { useParams } from "react-router-dom";
 import Axios from "axios";
 
 const AttempterResults = () => {
-  const [results, setResults] = useState([]);
+  const [attempterIDs, setAttempterIDs] = useState([]);
   const params = useParams();
-
   useEffect(() => {
     Axios.get("http://localhost:3001/getQuiz/" + params.quizId).then(
       (response) => {
-        console.log(response.data);
-        setResults(response.data);
+        setAttempterIDs(response.data.attempterIDs);
       }
     );
     Axios.get("http://localhost:3001/getUser/" + params.hostId).then(
       (response) => {
-        console.log(response.data);
+        // console.log(response.data);
       }
     );
   }, []);
 
-  return <div>Result of all the people who gave this quiz</div>;
+  let viewing = () => {
+    if (params.viewerId === params.hostId) {
+      return (
+        <div>
+          This page is being viewed by host.
+          <br />
+          WORK IN PROGRESS
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          You are only allowed to check scores of quizzes that you have hosted.
+        </div>
+      );
+    }
+  };
+
+  return (
+    <div>
+      {viewing()}
+      {console.log(attempterIDs)}
+    </div>
+  );
 };
 
 export default AttempterResults;

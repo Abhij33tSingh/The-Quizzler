@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import Axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import QuizDetail from "./QuizDetail";
 
 const ListOfQuizzes = () => {
   const params = useParams();
+  const navigate = useNavigate();
   const [quizzesCreated, setQuizzesCreated] = useState([]);
 
   useEffect(() => {
@@ -14,24 +16,26 @@ const ListOfQuizzes = () => {
     );
   }, []);
 
-  let getQuizDetails = async (quizId) => {
-    let quizDetails = await Axios.get(
-      "http://localhost:3001/getQuiz/" + quizId
-    );
-    return quizDetails;
-  };
-
   return (
     <div>
-      List of All Quizzes Created by this user. EACH title should be a link to
-      "/attempterResults/:quizId/:hostId"
-      <br />
-      {quizzesCreated.map(async (data) => {
-        let quiz = await getQuizDetails(data);
-        {
-          console.log(quiz);
-        }
-        return <div>{quiz.data.title}</div>;
+      Click on Quiz Name to see results of Attempters in that quiz
+      {quizzesCreated.map((quizId) => {
+        return (
+          <div
+            onMouseDown={() => {
+              navigate(
+                "/AttempterResults/" +
+                  quizId +
+                  "/" +
+                  params.userId +
+                  "/" +
+                  params.userId
+              );
+            }}
+          >
+            {<QuizDetail quizId={quizId} />}
+          </div>
+        );
       })}
     </div>
   );
