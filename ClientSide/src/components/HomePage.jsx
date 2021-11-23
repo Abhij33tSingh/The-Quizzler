@@ -1,7 +1,7 @@
 import React from "react";
-import { useEffect, useState, Fragment } from "react";
+import { useEffect, useState } from "react";
 import Axios from "axios";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import SelectQuiz from "./SelectQuiz";
 
 var year = new Date();
@@ -13,7 +13,6 @@ function HomePage(props) {
 
   // const id = props.id;
   const [name, setName] = useState("");
-  const [id, setId] = useState("");
   const [allQuizzes, setAllQuizzes] = useState({});
   const navigate = useNavigate();
   const params = useParams();
@@ -22,7 +21,6 @@ function HomePage(props) {
     Axios.get("http://localhost:3001/getUser/" + params.id).then(
       (response) => {
         setName(response.data.name);
-        setId(response.data.id);
       }
       //WE ARE GETTING ALL OF OUR USER DATA IN response.data
     );
