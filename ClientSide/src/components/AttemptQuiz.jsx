@@ -90,9 +90,22 @@ function AttemptQuiz(props) {
                 </div>
               )}
               {response === a.length && state === "done" ? (
-                <h2>
+                <h1>
+                  <div className="QuestionContainer">
+                    <div className="AttemptQuizTitle">
                   Your score is - {score} / {a.length}
-                </h2>
+                  
+                  </div>
+                  <div className="AttemptQuizTitle">
+                  <button 
+                    onClick={()=>{
+                      navigate("/homepage/" + params.id)
+                    }}
+                    >Go To Home</button>
+                  </div>
+                  
+                  </div>
+                </h1>
               ) : null}
             </div>
           </h4>
