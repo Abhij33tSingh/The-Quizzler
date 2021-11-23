@@ -71,11 +71,11 @@ const AttempterResults = () => {
           </div>
         </div>
         <div className="ResultOfAttempter">
-          {attempterIDs.map((attempterID) => {
+          {attempterIDs.length ? attempterIDs.map((attempterID) => {
             return (
               <GetUserDetails userId={attempterID} quizId={params.quizId} />
             );
-          })}
+          }) : <div>Sorry NoOne Attempted this Quiz</div>}
         </div>
       </div>
     </div>
