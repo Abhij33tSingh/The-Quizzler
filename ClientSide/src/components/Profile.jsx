@@ -12,13 +12,9 @@ function Profile() {
   const navigate = useNavigate();
   const [userData, setUserData] = useState([]);
   useEffect(() => {
-    Axios.get("http://localhost:3001/readUser").then((response) => {
-      for (let i = 0; i < response.data.length; i++) {
-        if (params.id === response.data[i]._id) {
-          setUserData(response.data[i]);
-          console.log(response.data[i]);
-        }
-      }
+    Axios.get("http://localhost:3001/getUser/" + params.id).then((response) => {
+      setUserData(response.data);
+      console.log(response.data);
     });
   }, []);
   const data = Object.values(userData);
