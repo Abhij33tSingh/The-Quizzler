@@ -61,8 +61,8 @@ const ListOfQuizzes = () => {
             </div>
           </div>
         </div>
-        <div>
-          <h2>These are the Quizzes you havecreated</h2>
+        <div className="QuizListBody">
+          <h2>These are the Quizzes you have created</h2>
           {quizzesCreated.map((quizId) => {
             return (
               <div className="QuizList">
