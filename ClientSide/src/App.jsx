@@ -51,7 +51,7 @@ function App() {
           element={<HomePage loggedIn={loggedIn} setIsLoggedIn={setLoggedIn} />}
         />
 
-        <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/profile/:id/:viewerId" element={<Profile />} />
 
         <Route path="/listOfAllQuizzes/:userId" element={<ListOfQuizzes />} />
         <Route

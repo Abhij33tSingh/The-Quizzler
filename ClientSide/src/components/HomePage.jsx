@@ -40,7 +40,6 @@ function HomePage(props) {
     i = 0;
   }, []);
   const q = Object.values(allQuizzes);
-  console.log(q);
   if (true) {
     return (
       <div>
@@ -59,7 +58,7 @@ function HomePage(props) {
             <nav
               className="UserName"
               onMouseDown={() => {
-                navigate("/profile/" + params.id);
+                navigate("/profile/" + params.id + "/" + params.id);
               }}
             >
               {name}
