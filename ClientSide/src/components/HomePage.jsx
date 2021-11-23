@@ -9,6 +9,7 @@ year = year.getFullYear();
 
 function HomePage(props) {
   const isLoggedIn = props.loggedIn;
+  const setIsLoggedIn = props.setIsLoggedIn;
 
   // const id = props.id;
   const [name, setName] = useState("");
@@ -31,6 +32,12 @@ function HomePage(props) {
 
       //WE ARE GETTING ALL OF OUR QUIZZES IN response
     });
+
+    if (params.id == undefined) {
+      setIsLoggedIn(false);
+    } else {
+      setIsLoggedIn(true);
+    }
   }, []);
   const q = Object.values(allQuizzes);
   if (true) {

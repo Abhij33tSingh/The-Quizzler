@@ -9,7 +9,8 @@ import QuizCreated from "./components/QuizCreated";
 import Profile from "./components/Profile";
 import AttemptQuiz from "./components/AttemptQuiz";
 import PastResultsPage from "./components/PastResultsPage";
-//import AttemptQuiz from "./components/AttemptQuiz";
+import AttempterResults from "./components/AttempterResults";
+import ListOfQuizzes from "./components/ListOfQuizzes";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -46,10 +47,16 @@ function App() {
         <Route path="/pastResults/:id" element={<PastResultsPage />} />
         <Route
           path="/homepage/:id" //id - userId
-          element={<HomePage loggedIn={loggedIn} />}
+          element={<HomePage loggedIn={loggedIn} setIsLoggedIn={setLoggedIn} />}
         />
 
         <Route path="/profile/:id" element={<Profile />} />
+
+        <Route path="/listOfAllQuizzes/:userId" element={<ListOfQuizzes />} />
+        <Route
+          path="/attempterResults/:quizId/:hostId"
+          element={<AttempterResults />}
+        />
       </Routes>
     </div>
   );
