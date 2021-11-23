@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Axios from "axios";
+import GetUserDetails from "./GetUserDetails";
 
 const AttempterResults = () => {
   const [attempterIDs, setAttempterIDs] = useState([]);
@@ -9,11 +10,6 @@ const AttempterResults = () => {
     Axios.get("http://localhost:3001/getQuiz/" + params.quizId).then(
       (response) => {
         setAttempterIDs(response.data.attempterIDs);
-      }
-    );
-    Axios.get("http://localhost:3001/getUser/" + params.hostId).then(
-      (response) => {
-        // console.log(response.data);
       }
     );
   }, []);
@@ -39,7 +35,11 @@ const AttempterResults = () => {
   return (
     <div>
       {viewing()}
-      {console.log(attempterIDs)}
+      <div>
+        {attempterIDs.map((attempterID) => {
+          return <GetUserDetails userId={attempterID} quizId={params.quizId} />;
+        })}
+      </div>
     </div>
   );
 };
