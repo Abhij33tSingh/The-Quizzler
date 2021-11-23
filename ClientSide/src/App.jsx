@@ -53,7 +53,10 @@ function App() {
 
         <Route path="/profile/:id/:viewerId" element={<Profile />} />
 
-        <Route path="/listOfAllQuizzes/:userId" element={<ListOfQuizzes />} />
+        <Route
+          path="/listOfAllQuizzes/:userId/:viewerId"
+          element={<ListOfQuizzes />}
+        />
         <Route
           path="/attempterResults/:quizId/:hostId/:viewerId"
           element={<AttempterResults />}

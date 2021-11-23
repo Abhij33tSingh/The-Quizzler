@@ -47,7 +47,7 @@ function Profile() {
         <div className="IntroSection">
           <img className="UserImage" src={userIcons} alt="user icon" />
           <div>
-            <h1 className="Greetings">Hello {userData.name}</h1>
+            <h1 className="Greetings">{userData.name}</h1>
             <div className="UserDetails">
               {userData.quizzesCompleted && (
                 <div>
@@ -84,7 +84,9 @@ function Profile() {
             <button
               type="button"
               onMouseDown={() => {
-                navigate("/listOfAllQuizzes/" + userData._id);
+                navigate(
+                  "/listOfAllQuizzes/" + userData._id + "/" + viewerData._id
+                );
               }}
             >
               Click Here
