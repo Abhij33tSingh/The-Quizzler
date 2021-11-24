@@ -52,22 +52,25 @@ app.post("/updateUserQuizzesCreated/:userId", async (req, res) => {
 app.post("/updateUserQuizzesCompleted/:userId", async (req, res) => {
   const { userId } = req.params;
   const { quizId, marksScored } = req.body;
-  const reqUser = await userModel.findById(userId);
-  const reqQuiz = await quizModel.findById(quizId);
-  reqQuiz.attempterIDs.push(userId);
-  reqUser.quizzesCompleted.push({ quizId: quizId, marksScored: marksScored });
-  await reqUser.save();
-  await reqQuiz.save();
-  res.send(reqUser);
+  try {
+    const reqUser = await userModel.findById(userId);
+    const reqQuiz = await quizModel.findById(quizId);
+    reqQuiz.attempterIDs.push(userId);
+    reqUser.quizzesCompleted.push({ quizId: quizId, marksScored: marksScored });
+    await reqUser.save();
+    await reqQuiz.save();
+    res.send(reqUser);
+  } catch (err) {
+    res.send(err);
+  }
 });
 
 app.post("/postQuiz", async (req, res) => {
-  const { title, description, t, allQuestions, userId } = req.body;
+  const { title, description, allQuestions, userId } = req.body;
 
   const quiz = new quizModel({
     title: title,
     description: description,
-    t: t,
     userId: userId,
     allQuestions: allQuestions,
   });
@@ -82,8 +85,12 @@ app.post("/postQuiz", async (req, res) => {
 
 app.get("/getQuiz/:id", async (req, res) => {
   const { id } = req.params;
-  const reqQuiz = await quizModel.findById(id);
-  res.send(reqQuiz);
+  try {
+    const reqQuiz = await quizModel.findById(id);
+    res.send(reqQuiz);
+  } catch (err) {
+    res.send(err);
+  }
 });
 
 app.get("/getAllQuizzes", async (req, res) => {
