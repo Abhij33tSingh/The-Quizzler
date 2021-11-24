@@ -11,7 +11,6 @@ const PastResultsPage = () => {
   useEffect(() => {
     Axios.get("http://localhost:3001/getUser/" + params.id).then((response) => {
       setData(response.data);
-      console.log(response.data);
     });
   }, []);
 
@@ -51,7 +50,14 @@ const PastResultsPage = () => {
                 {userData.quizzesCompleted.map((q, key) => (
                   <tr key={key}>
                     <td> {key + 1}</td>
-                    <td>{<QuizDetail quizId={q.quizId} />}</td>
+                    <td
+                      className="Author"
+                      onMouseDown={() => {
+                        navigate("/attempt/" + params.id + "/" + q.quizId);
+                      }}
+                    >
+                      {<QuizDetail quizId={q.quizId} />}
+                    </td>
                     <td>
                       ({q.marksScored})/{<QuizMarks quizId={q.quizId} />}
                     </td>

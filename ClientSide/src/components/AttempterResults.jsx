@@ -22,27 +22,8 @@ const AttempterResults = () => {
     );
   }, [params.hostId, params.quizId]);
 
-  let viewing = () => {
-    if (params.viewerId === params.hostId) {
-      return (
-        <div>
-          This page is being viewed by host.
-          <br />
-          WORK IN PROGRESS
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          You are only allowed to check scores of quizzes that you have hosted.
-        </div>
-      );
-    }
-  };
-
   return (
     <div>
-      {/* {viewing()} */}
       <header>
         <h1 onClick={() => navigate("/homepage/" + params.viewerId)}>
           Quizzler
@@ -71,11 +52,15 @@ const AttempterResults = () => {
           </div>
         </div>
         <div className="ResultOfAttempter">
-          {attempterIDs.length ? attempterIDs.map((attempterID) => {
-            return (
-              <GetUserDetails userId={attempterID} quizId={params.quizId} />
-            );
-          }) : <div>Sorry NoOne Attempted this Quiz</div>}
+          {attempterIDs.length ? (
+            attempterIDs.map((attempterID) => {
+              return (
+                <GetUserDetails userId={attempterID} quizId={params.quizId} />
+              );
+            })
+          ) : (
+            <div>Sorry NoOne Attempted this Quiz</div>
+          )}
         </div>
       </div>
     </div>

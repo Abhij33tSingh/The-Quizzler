@@ -42,7 +42,7 @@ function AboutUs() {
           <nav
             className="UserName"
             onMouseDown={() => {
-              navigate("/profile/" + Params.id);
+              navigate("/profile/" + Params.id + "/" + Params.id);
             }}
           >
             {userData.name}
