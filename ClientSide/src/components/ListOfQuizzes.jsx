@@ -85,7 +85,7 @@ const ListOfQuizzes = () => {
                   {<QuizDetail quizId={quizId} />}
                 </div>
                 {areSame && (
-                  <button
+                  <button className="Attempter"
                     onClick={() => {
                       navigate(
                         "/AttempterResults/" +

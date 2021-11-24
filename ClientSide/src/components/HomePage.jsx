@@ -66,13 +66,15 @@ function HomePage(props) {
             </nav>
           </div>
         </header>
-        <input
+        <div className="searchbarContainer">
+        <input className="Searchbar"
           type="text"
-          placeholder="Search"
+          placeholder="Search Quiz"
           onChange={(event) => {
             setSearchTerm(event.target.value);
           }}
         />
+        </div>
         <div className="HomePage">
           <div className="QuizContent">
             {q
