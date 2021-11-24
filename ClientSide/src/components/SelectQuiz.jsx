@@ -22,7 +22,7 @@ const SelectQuiz = (props) => {
     <div className="QuizContainer">
       <h1 className="QuizTitle">{props.q.title}</h1>
       <p className="QuizDescription">{props.q.description}</p>
-      <div
+      <div className="Author"
         onMouseDown={() => {
           navigate("/profile/" + props.q.userId + "/" + params.id);
         }}
