@@ -1,17 +1,19 @@
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const userModel = require("./models/users");
 const quizModel = require("./models/quiz");
 const cors = require("cors");
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect(
-  "mongodb+srv://Abhijeet:QuizzlerPassword@quizzlercluster.wbmhf.mongodb.net/quizzler?retryWrites=true&w=majority",
-  { useNewUrlParser: true }
-);
+const db_Url = process.env.db_Url;
+
+mongoose.connect(db_Url, { useNewUrlParser: true });
 
 app.post("/addUser", async (req, res) => {
   const { name, email, password } = req.body;
@@ -113,6 +115,6 @@ app.get("/getUser/:id", async (req, res) => {
   }
 });
 
-app.listen(3001, () => {
-  console.log("Server running on port 3001");
+app.listen(port, () => {
+  console.log(`erver running on port ${port}`);
 });
