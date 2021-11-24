@@ -30,7 +30,9 @@ function Profile() {
   return (
     <div>
       <header>
-        <h1 onClick={() => navigate("/homepage/" + params.id)}>Quizzler</h1>
+        <h1 onClick={() => navigate("/homepage/" + params.viewerId)}>
+          Quizzler
+        </h1>
 
         <div className="ProfilenavbarItems">
           <nav onClick={() => navigate("/createquiz/" + params.id)}>

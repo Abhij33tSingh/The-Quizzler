@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const quizSchema = new mongoose.Schema({
   description: String,
   title: String,
-  t: String,
   userId: String,
   attempterIDs: [{ type: String }],
   allQuestions: [

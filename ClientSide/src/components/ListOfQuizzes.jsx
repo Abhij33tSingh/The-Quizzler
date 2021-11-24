@@ -30,16 +30,18 @@ const ListOfQuizzes = () => {
   return (
     <div>
       <header>
-        <h1 onClick={() => navigate("/homepage/" + params.userId)}>Quizzler</h1>
+        <h1 onClick={() => navigate("/homepage/" + params.viewerId)}>
+          Quizzler
+        </h1>
 
         <div className="ProfilenavbarItems">
-          <nav onClick={() => navigate("/createquiz/" + params.userId)}>
+          <nav onClick={() => navigate("/createquiz/" + params.viewerId)}>
             Create a Quiz
           </nav>
-          <nav onClick={() => navigate("/AboutUs/" + params.userId)}>
+          <nav onClick={() => navigate("/AboutUs/" + params.viewerId)}>
             About us
           </nav>
-          <nav onClick={() => navigate("/homepage/" + params.userId)}>
+          <nav onClick={() => navigate("/homepage/" + params.viewerId)}>
             Start Quiz
           </nav>
           <nav
@@ -85,7 +87,8 @@ const ListOfQuizzes = () => {
                   {<QuizDetail quizId={quizId} />}
                 </div>
                 {areSame && (
-                  <button className="Attempter"
+                  <button
+                    className="Attempter"
                     onClick={() => {
                       navigate(
                         "/AttempterResults/" +
