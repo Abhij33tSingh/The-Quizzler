@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import Axios from "axios";
+import { useParams, useNavigate } from "react-router-dom";
 
 const GetUserDetails = (props) => {
   const [name, setName] = useState([]);
   const [score, setScore] = useState([]);
   const [quizLength, setQuizLength] = useState([]);
+  const params = useParams();
+  const navigate = useNavigate();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
@@ -31,7 +34,14 @@ const GetUserDetails = (props) => {
 
   return (
     <div className="AttempterResults">
-      <span className="attempterName">{name} Scored</span>
+      <span
+        className="attempterName Author"
+        onMouseDown={() => {
+          navigate("/profile/" + props.userId + "/" + params.viewerId);
+        }}
+      >
+        {name} Scored
+      </span>
       <span className="score">{score}</span>
       <span>
         {" "}

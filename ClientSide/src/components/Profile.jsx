@@ -20,7 +20,6 @@ function Profile() {
 
     Axios.get("http://localhost:3001/getUser/" + params.viewerId).then(
       (response) => {
-        console.log(response.data);
         setViewerData(response.data);
       }
     );
@@ -35,11 +34,13 @@ function Profile() {
         </h1>
 
         <div className="ProfilenavbarItems">
-          <nav onClick={() => navigate("/createquiz/" + params.id)}>
+          <nav onClick={() => navigate("/createquiz/" + params.viewerId)}>
             Create a Quiz
           </nav>
-          <nav onClick={() => navigate("/AboutUs/" + params.id)}>About us</nav>
-          <nav onClick={() => navigate("/homepage/" + params.id)}>
+          <nav onClick={() => navigate("/AboutUs/" + params.viewerId)}>
+            About us
+          </nav>
+          <nav onClick={() => navigate("/homepage/" + params.viewerId)}>
             Select Quiz
           </nav>
           <nav>{viewerData.name}</nav>

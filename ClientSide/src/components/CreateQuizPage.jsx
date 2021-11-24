@@ -30,8 +30,6 @@ const CreateQuizPage = () => {
     const item = Q;
     addques([...allQutions, item]);
     x++;
-    console.log(x);
-    //console.log(allQutions);
   };
   const {
     value: title,
@@ -150,8 +148,7 @@ const CreateQuizPage = () => {
               />
               <br />
             </div>
-            <div className={`form-control`} onClick={Quiztype}>
-            </div>
+            <div className={`form-control`} onClick={Quiztype}></div>
           </div>
           <div className={`form-control`}>
             {allQutions.length >= 1 && (
